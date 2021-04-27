@@ -1,0 +1,240 @@
+\documentclass[14pt]{extreport}
+%\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+
+\usepackage[a4paper, top=3.5cm, bottom=3.5cm, left=2cm, right=2cm, footskip=3\baselineskip]{geometry}
+
+%\usepackage{showframe}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+
+
+\usepackage{graphicx}
+\graphicspath{{../images/}}
+
+
+\usepackage{indentfirst}
+
+
+\usepackage{xeCJK}
+\setCJKmainfont{標楷體}
+\setCJKfamilyfont{ming}{新細明體}
+\setCJKfamilyfont{kai}{標楷體}
+\setCJKfamilyfont{hei}{Taipei Sans TC Beta}
+\setCJKsansfont{Taipei Sans TC Beta}
+\setCJKmonofont{Consolas}
+\setlength{\parindent}{2em}
+
+%\setmainfont{Times New Roman}
+\setsansfont{Arial}
+\setmonofont{Consolas}
+
+
+
+\usepackage{xcolor}
+\usepackage{listings}
+
+\lstset{
+	language=[LaTeX]TeX,
+	basicstyle=\ttfamily\footnotesize,
+	keywordstyle=\color{blue},
+	identifierstyle=\color{magenta},
+	backgroundcolor=\color{white},
+	breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+	breaklines=true,                 % sets automatic line breaking
+	captionpos=b,                    % sets the caption-position to bottom
+	commentstyle=\color{gray},      % comment style
+	deletekeywords={...},            % if you want to delete keywords from the given language
+	escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+	extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+	firstnumber=1,                % start line enumeration with line 1000
+	frame=single,	                 % adds a frame around the code
+	keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+	morekeywords={*,...},            % if you want to add more keywords to the set
+	numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+	numbersep=5pt,                   % how far the line-numbers are from the code
+	numberstyle=\ttfamily\tiny\color{black},  % the style that is used for the line-numbers
+	rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+	showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+	showstringspaces=false,          % underline spaces within strings only
+	showtabs=false,                  % show tabs within strings adding particular underscores
+	stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+%	stringstyle=\color{{rgb}{0.58,0,0.82}},     % string literal style
+	tabsize=4,
+%	title=\lstnamer
+}
+
+
+
+
+\usepackage{fancyhdr}
+
+
+
+
+\fancypagestyle{plain}{
+	\renewcommand{\headrulewidth}{0pt}
+	\renewcommand{\footrulewidth}{0pt}
+	\fancyhf{}
+	\rhead{\thepage}
+	\rfoot{\includegraphics[width=20pt]{ms_word.png}}
+}
+
+
+
+\fancypagestyle{fancy}{
+	\renewcommand{\headrulewidth}{2pt}
+	\renewcommand{\footrulewidth}{2pt}
+	\fancyhf{}
+	\rhead{\thepage}
+	\lhead{\leftmark}
+	\cfoot{\leftmark}
+	\rfoot{\includegraphics[width=2pt]{ms_word.png}}
+}
+
+
+\pagestyle{fancy}
+
+
+
+\usepackage{zhnumber}
+
+\usepackage{chngcntr}
+\counterwithin{chapter}{part}
+\renewcommand{\thechapter}{\arabic{chapter}}
+
+
+
+\usepackage{titlesec}
+\titleformat{\chapter}[frame]{\normalfont\huge\bfseries}{第\ \thechapter\ 章}{20pt}{\Huge}
+\titlespacing{\chapter}{0pt}{-10pt}{40pt}
+\titleformat{\section}
+{\normalfont\Large\bfseries}{\thesection}{1em}{}
+%\titleformat{\part}[]
+
+
+
+\usepackage{lipsum}
+
+
+
+\newcounter{example}[section]
+\newenvironment{example}[1][]{\refstepcounter{example}\par\medskip
+	\textbf{例題~\theexample. #1} \rmfamily}{\medskip}
+
+
+
+
+%\usepackage{moreenum}
+
+
+\linespread{1.25}
+
+\title{
+	\fontsize{48pt}{\baselineskip}
+	\LaTeX 教學}
+\author{
+	\fontspec{[Aller.ttc]}
+%	\fontsize{48pt}{\baselineskip}
+	GPwaob\_92679}
+\date{}
+
+\renewcommand{\contentsname}{目錄 Table Of Contents}
+
+
+
+
+\begin{document}
+	\maketitle
+	\tableofcontents
+
+
+	\part{前言}
+		\chapter*{作者介紹}
+		
+		\chapter*{推薦序}
+			
+			
+			
+		
+		
+		
+		
+		
+		\chapter{\LaTeX 簡介}
+		歡迎各位讀者進入\LaTeX 的世界！
+			\section{什麼是 \LaTeX ？}
+				\LaTeX 是一款基於\TeX 的排版系統，
+			\section{為什麼要學 \LaTeX ？}
+			\LaTeX 不管是作數理報告，或是，甚至
+			
+			\section{\LaTeX 的優缺點}
+			優點：
+			\indent	\begin{itemize}
+					\item 
+					\item 
+					\item 
+					\item 
+				\end{itemize}				
+			缺點：
+			\indent	\begin{itemize}
+					\item 嵌入圖片與表格很麻煩，格式很難調。
+					\item 
+					\item 
+					\item 		
+				\end{itemize}
+
+			\section{\LaTeX vs. Microsoft Word}
+			下表為......陣營的\LaTeX 選手與......陣營的Microsoft Word選手大比拚：
+			
+			
+			\begin{center}
+			
+					\begin{tabular}{|c|c|}
+						\hline
+						LaTeX \ \LaTeX & Microsoft Word \ \raisebox{-5pt}{\includegraphics[width=20pt]{ms_word.png}} \\
+						\hline
+						&  \\
+						\hline
+						&  \\
+						\hline
+						&  \\
+						\hline
+						&  \\
+						\hline
+					\end{tabular}
+			
+% insert microsoft word meme
+			
+			
+			\end{center}
+			
+			
+			
+		\part{\LaTeX 入門}
+			
+		\chapter{寫出你的第一份 \LaTeX ！}
+		\section{Hello, World! in \LaTeX}
+		
+		\begin{lstlisting}
+			\documentclass{article}	
+			
+			
+				\begin{document}
+					Hello, World!
+				\end{document}
+			
+		\end{lstlisting}
+	
+		
+	
+			
+
+			
+	
+		
+	
+\end{document}
