@@ -43,5 +43,5 @@ Part II LaTeX入門
 ## 工作人員 Contributors
 
 - 專案發起人/作者 Project Director/Author: GPwaob_92679 (Github: [@gpwaob92679](https://github.com/gpwaob92679))
-- 作者 Author: Icelin1717 (Github: [@Icelin1717](https://github.com/Icelin1717))
+- 作者/頁尾逐格動畫設計 Author/Animation Design: Icelin1717 (Github: [@Icelin1717](https://github.com/Icelin1717))
 - 美編 Artworks: -招募中 HIRING-

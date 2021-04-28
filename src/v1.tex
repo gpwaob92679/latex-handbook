@@ -68,6 +68,8 @@
 }
 
 
+%\newcounter{pageAnimation}
+%\setcounter{pageAnimation}{33}
 
 
 \usepackage{fancyhdr}
@@ -80,7 +82,7 @@
 	\renewcommand{\footrulewidth}{0pt}
 	\fancyhf{}
 	\rhead{\thepage}
-	\rfoot{\includegraphics[width=20pt]{ms_word.png}}
+	\rfoot{\includegraphics[width=10em]{/logo/\arabic{page}.jpg}}
 }
 
 
@@ -92,7 +94,7 @@
 	\rhead{\thepage}
 	\lhead{\leftmark}
 	\cfoot{\leftmark}
-	\rfoot{\includegraphics[width=15pt]{ms_word.png}}
+	\rfoot{\includegraphics[width=10em]{/logo/\arabic{page}.jpg}}
 }
 
 
@@ -238,11 +240,9 @@
 			
 		\end{lstlisting}
 	
-		
-	
-			
-
-			
+		\lipsum[1-150]
+		\lipsum[1-150]
+		\lipsum[1-150]	
 	
 		
 	
