@@ -68,8 +68,8 @@
 }
 
 
-%\newcounter{pageAnimation}
-%\setcounter{pageAnimation}{33}
+\newcounter{pageAnimation}
+\setcounter{pageAnimation}{1}
 
 
 \usepackage{fancyhdr}
@@ -82,7 +82,7 @@
 	\renewcommand{\footrulewidth}{0pt}
 	\fancyhf{}
 	\rhead{\thepage}
-	\rfoot{\includegraphics[width=10em]{/logo/\arabic{page}.jpg}}
+%	\rfoot{\includegraphics[width=10em]{/logo/\arabic{pageAnimation}.jpg}}
 }
 
 
@@ -94,7 +94,8 @@
 	\rhead{\thepage}
 	\lhead{\leftmark}
 	\cfoot{\leftmark}
-	\rfoot{\includegraphics[width=10em]{/logo/\arabic{page}.jpg}}
+	\rfoot{\includegraphics[width=8em]{/logo/\arabic{page}.jpg}}
+	\lfoot{\thepageAnimation}
 }
 
 
