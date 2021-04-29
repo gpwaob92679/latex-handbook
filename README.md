@@ -31,17 +31,34 @@
 - 以教學式的講義，帶領讀者從零開始學習LaTeX。
 - 將LaTeX語法與套件包的技術文件翻譯成中文版，以供社群參考。
 
-### 目錄 Table Of Contents
+### 目錄 Table of Contents
 
-Part I 前言
+#### Part I 前言
 
-Part II LaTeX入門
+##### 第一章 LaTeX簡介
+
+#### Part II LaTeX入門
 
 --待續 TO BE CONTINUED--
 
 
 ## 工作人員 Contributors
 
-- 專案發起人/作者 Project Director/Author: GPwaob_92679 (GitHub: [@gpwaob92679](https://github.com/gpwaob92679))
-- 作者/頁尾逐格動畫設計 Author/Animation Design: Icelin1717 (GitHub: [@Icelin1717](https://github.com/Icelin1717))
-- 美編 Artworks: sakurajima0207 (GitHub: [@sakurajima0207](https://github.com/sakurajima0207))
+- 專案發起人 Project Director: GPwaob_92679 (GitHub: [@gpwaob92679](https://github.com/gpwaob92679))
+
+- 作者群 Authors
+	- 作者 Author: GPwaob_92679 (GitHub: [@gpwaob92679](https://github.com/gpwaob92679))
+	- 作者 Author: Icelin1717 (GitHub: [@Icelin1717](https://github.com/Icelin1717))
+
+- 美術設計群 Art Designers
+	- 頁尾逐格動畫設計 Animation Design: Icelin1717 (GitHub: [@Icelin1717](https://github.com/Icelin1717))
+	- 美編 Artworks: sakurajima0207 (GitHub: [@sakurajima0207](https://github.com/sakurajima0207))
+	
+## 外部連結  External Links
+
+### LaTeX
+
+- [LaTeX Project Official Site](https://www.latex-project.org/)
+- [MiKTeX Project Page](https://miktex.org/)
+
+### 
