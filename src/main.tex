@@ -1,92 +1,107 @@
-\documentclass[14pt]{extreport}
+% Document Settings
+\documentclass[14pt, oneside]{extbook}
 %\usepackage[utf8]{inputenc}
 %\usepackage[T1]{fontenc}
+\usepackage[
+	top=2cm,
+	bottom=2cm,
+	left=2cm,
+	right=2cm,
+	headheight=17pt,
+	includehead, includefoot,
+	footskip=50pt
+]{geometry} 
 
-\usepackage[a4paper, top=3.5cm, bottom=3.5cm, left=2cm, right=2cm, footskip=3\baselineskip]{geometry}
 
-%\usepackage{showframe}
-
+% AMS Packages
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 
 
 
+%graphicx
 \usepackage{graphicx}
 \graphicspath{{../images/}}
 
 
+% Font and Indent
 \usepackage{indentfirst}
+\setlength{\parindent}{2em}
+\linespread{1.25}
 
-
+\usepackage{fontspec}
 \usepackage{xeCJK}
 \setCJKmainfont{標楷體}
 \setCJKfamilyfont{ming}{新細明體}
 \setCJKfamilyfont{kai}{標楷體}
 \setCJKfamilyfont{hei}{Taipei Sans TC Beta}
 \setCJKsansfont{Taipei Sans TC Beta}
-\setCJKmonofont{Consolas}
-\setlength{\parindent}{2em}
+\setCJKmonofont{Taipei Sans TC Beta}
 
 %\setmainfont{Times New Roman}
-\setsansfont{Arial}
+\setsansfont{Aller}
 \setmonofont{Consolas}
 
+% Floats, Figures, Tables, ...
+\usepackage[table]{xcolor}
+\usepackage{float}
+\usepackage[justification=centering, labelfont=sf, textfont=sf]{caption}
+\usepackage[breakable, minted, skins]{tcolorbox}
+\usepackage{booktabs}
+\usepackage{multirow}
+\renewcommand{\figurename}{圖}
+\renewcommand{\tablename}{表}
 
-
-\usepackage{xcolor}
-\usepackage{listings}
-
-\lstset{
-	language=[LaTeX]TeX,
-	basicstyle=\ttfamily\footnotesize,
-	keywordstyle=\color{blue},
-	identifierstyle=\color{magenta},
-	backgroundcolor=\color{white},
-	breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
-	breaklines=true,                 % sets automatic line breaking
-	captionpos=b,                    % sets the caption-position to bottom
-	commentstyle=\color{gray},      % comment style
-	deletekeywords={...},            % if you want to delete keywords from the given language
-	escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
-	extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
-	firstnumber=1,                % start line enumeration with line 1000
-	frame=single,	                 % adds a frame around the code
-	keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
-	morekeywords={*,...},            % if you want to add more keywords to the set
-	numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
-	numbersep=5pt,                   % how far the line-numbers are from the code
-	numberstyle=\ttfamily\tiny\color{black},  % the style that is used for the line-numbers
-	rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
-	showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
-	showstringspaces=false,          % underline spaces within strings only
-	showtabs=false,                  % show tabs within strings adding particular underscores
-	stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
-%	stringstyle=\color{{rgb}{0.58,0,0.82}},     % string literal style
-	tabsize=4,
-%	title=\lstnamer
+%Code
+%\usepackage[cache=false]{minted}
+\renewcommand{\listingscaption}{程式碼}
+\renewcommand{\theFancyVerbLine}{\ttfamily{\footnotesize{\arabic{FancyVerbLine}}}} % redefine style of line numbers
+\newtcblisting{src}{
+	listing only,
+	breakable,
+	enhanced,
+	listing engine=minted,
+	minted language=LaTeX,
+	minted style=colorful,
+	minted options = {
+		linenos, 
+		breaklines=true, 
+		breakbefore=., 
+		% fontsize=\footnotesize, 
+		numbersep=3.7mm,
+		autogobble,
+		tabsize=4
+	},
+	drop fuzzy shadow,
+	left=7mm,
+	arc=2pt,
+	overlay = {
+		\begin{tcbclipinterior}
+			\fill[gray!25] (frame.south west) rectangle ([xshift=7mm]frame.north west);
+		\end{tcbclipinterior}
+	}  
 }
 
 
-\newcounter{pageAnimation}
-\setcounter{pageAnimation}{1}
+% hyperref
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=black,
+	filecolor=magenta,   
+	urlcolor=blue,
+}
 
-
+% Header
 \usepackage{fancyhdr}
-
-
-
-
 \fancypagestyle{plain}{
 	\renewcommand{\headrulewidth}{0pt}
 	\renewcommand{\footrulewidth}{0pt}
 	\fancyhf{}
 	\rhead{\thepage}
-%	\rfoot{\includegraphics[width=10em]{/logo/\arabic{pageAnimation}.jpg}}
+%	\rfoot{\includegraphics[width=10em]{/logo/\arabic{page}.jpg}}
 }
-
-
-
 \fancypagestyle{fancy}{
 	\renewcommand{\headrulewidth}{2pt}
 	\renewcommand{\footrulewidth}{2pt}
@@ -94,23 +109,27 @@
 	\rhead{\thepage}
 	\lhead{\leftmark}
 	\cfoot{\leftmark}
-	\rfoot{\includegraphics[width=8em]{/logo/\arabic{page}.jpg}}
-	\lfoot{\thepageAnimation}
+	\rfoot{\includegraphics[width=5em]{/logo/\arabic{page}.jpg}}
 }
-
-
 \pagestyle{fancy}
 
 
+% Chemistry and Physics
+\usepackage{chemfig}
+\usepackage[american]{circuitikz}
 
+
+%zhnumber
 \usepackage{zhnumber}
 
+
+% Counters
 \usepackage{chngcntr}
 \counterwithin{chapter}{part}
 \renewcommand{\thechapter}{\arabic{chapter}}
 
 
-
+% Title Styles
 \usepackage{titlesec}
 \titleformat{\chapter}[frame]{\normalfont\huge\bfseries}{第\ \thechapter\ 章}{20pt}{\Huge}
 \titlespacing{\chapter}{0pt}{-10pt}{40pt}
@@ -119,35 +138,28 @@
 %\titleformat{\part}[]
 
 
-
+% Debug
 \usepackage{lipsum}
+%\usepackage{showframe}
 
-
-
-\newcounter{example}[section]
-\newenvironment{example}[1][]{\refstepcounter{example}\par\medskip
-	\textbf{例題~\theexample. #1} \rmfamily}{\medskip}
-
-
-
-
+% UNUSED
 %\usepackage{moreenum}
 
 
-\linespread{1.25}
 
+% \maketitle
 \title{
-	\fontsize{48pt}{\baselineskip}
-	\LaTeX 教學}
+	\sffamily\Huge \textrm{\LaTeX}\ 秘笈
+}
+
 \author{
-	\fontspec{[Aller.ttc]}
-%	\fontsize{48pt}{\baselineskip}
-	GPwaob\_92679}
+	\sffamily\LARGE 武陵資訊讀書會 \\\\
+	\fontspec{Torus}{}\LARGE GPwaob\_92679
+}
 \date{}
 
+% \tableofcontents
 \renewcommand{\contentsname}{目錄 Table Of Contents}
-
-
 
 
 \begin{document}
@@ -156,9 +168,9 @@
 
 
 	\part{前言}
-		\chapter*{作者介紹}
+	\chapter*{作者介紹}
 		
-		\chapter*{推薦序}
+	\chapter*{推薦序}
 			
 			
 			
@@ -167,56 +179,59 @@
 		
 		
 		
-		\chapter{\LaTeX 簡介}
+	\chapter{\LaTeX 簡介}
 		歡迎各位讀者進入\LaTeX 的世界！
-			\section{什麼是 \LaTeX ？}
-				\LaTeX 是一款基於\TeX 的排版系統，
-			\section{為什麼要學 \LaTeX ？}
-			\LaTeX 不管是作數理報告，或是，甚至
+	\section{什麼是 \LaTeX ？}
+		\LaTeX 是一款基於\TeX 的排版系統，
+	\section{為什麼要學 \LaTeX ？}
+		\LaTeX 不管是作數理報告，或是，甚至
 %			譜、化學、棋譜、樂譜
-			\section{\LaTeX 的優缺點}
-			優點：
-			\indent	\begin{itemize}
-					\item 
-					\item 
-					\item 
-					\item 
-				\end{itemize}				
-			缺點：
-			\indent	\begin{itemize}
-					\item 嵌入圖片與表格很麻煩，格式很難調。
-					\item 
-					\item 
-					\item 		
-				\end{itemize}
+	\section{\LaTeX 的優缺點}
+		優點：
+		\begin{itemize}
+			\item 
+			\item 
+			\item 
+			\item 
+		\end{itemize}				
+		缺點：
+		\begin{itemize}
+			\item 嵌入圖片與表格很麻煩，格式很難調。
+			\item 
+			\item 
+			\item 		
+		\end{itemize}
 
-			\section{\LaTeX vs. Microsoft Word}
-			下表為......陣營的\LaTeX 選手與......陣營的Microsoft Word選手大比拚：
+	\section{\LaTeX vs. Microsoft Word}
+		下表為......陣營的\LaTeX 選手與......陣營的Microsoft Word選手大比拚：
 			
 			
-			\begin{center}
-			
-					\begin{tabular}{|c|c|}
-						\hline
-						LaTeX \ \LaTeX & Microsoft Word \ \raisebox{-5pt}{\includegraphics[width=20pt]{ms_word.png}} \\
-						\hline
-						&  \\
-						\hline
-						&  \\
-						\hline
-						&  \\
-						\hline
-						&  \\
-						\hline
-					\end{tabular}
+		\begin{table}[h]
+			\centering
+			\begin{tabular}{ c c }
+				\toprule
+				LaTeX \ \LaTeX & Microsoft Word \ \raisebox{-5pt}{\includegraphics[width=20pt]{/part1/ms_word.png}} \\
+				\midrule
+				&  \\
+				\midrule
+				&  \\
+				\midrule
+				&  \\
+				\midrule
+				&  \\
+				\bottomrule
+			\end{tabular}
 			
 % insert microsoft word meme
 % 程式碼 vs WYSIWYG
+			\label{tab:LaTeX vs MSWORD}
+			\caption{\textrm{\LaTeX}\ vs. Microsoft Word 大比拚}
 			
+		\end{table}
 			
-			\end{center}
+
 			
-		\chapter{環境初始設定}
+	\chapter{環境初始設定}
 			\LaTeX 並非一個獨立運行的程式，而是仰賴許多其他
 		
 		
@@ -226,24 +241,28 @@
 		
 		
 			
-		\part{\LaTeX 入門}
+	\part{\LaTeX 入門}
 			
-		\chapter{寫出你的第一份 \LaTeX ！}
-		\section{Hello, World! in \LaTeX}
-		
-		\begin{lstlisting}
-			\documentclass{article}	
-			
-			
+	\chapter{寫出你的第一份 \LaTeX ！}
+	\section{Hello, World! in \LaTeX}
+
+		\begin{listing}[h]
+			\begin{src}
+				\documentclass{article}
 				\begin{document}
 					Hello, World!
 				\end{document}
-			
-		\end{lstlisting}
-	
-		\lipsum[1-150]
-		\lipsum[1-150]
-		\lipsum[1-150]	
+			\end{src}
+			\label{lst:Hello_World}
+			\caption{Hello World! in \textrm{\LaTeX}}
+		\end{listing}
+
+
+
+
+%		\lipsum[1-150]
+%		\lipsum[1-150]
+%		\lipsum[1-150]	
 	
 		
 	
