@@ -20,7 +20,7 @@
 
 
 
-%graphicx
+% graphicx
 \usepackage{graphicx}
 \graphicspath{{../images/}}
 
@@ -28,7 +28,7 @@
 % Font and Indent
 \usepackage{indentfirst}
 \setlength{\parindent}{2em}
-\linespread{1.25}
+\linespread{1.1}
 
 \usepackage{fontspec}
 \usepackage{xeCJK}
@@ -47,14 +47,27 @@
 \usepackage[table]{xcolor}
 \usepackage{float}
 \usepackage[justification=centering, labelfont=sf, textfont=sf]{caption}
-\usepackage[breakable, minted, skins]{tcolorbox}
+
 \usepackage{booktabs}
 \usepackage{multirow}
 \renewcommand{\figurename}{圖}
 \renewcommand{\tablename}{表}
 
-%Code
-%\usepackage[cache=false]{minted}
+% Code
+\usepackage[chapter]{minted}
+\setminted{
+	linenos,
+	breaklines=true, 
+	breakbefore=.,
+	autogobble,
+	tabsize=4,
+}
+
+
+% tcolorbox
+\usepackage[breakable, minted, skins]{tcolorbox}
+
+%
 \renewcommand{\listingscaption}{程式碼}
 \renewcommand{\theFancyVerbLine}{\ttfamily{\footnotesize{\arabic{FancyVerbLine}}}} % redefine style of line numbers
 \newtcblisting{src}{
@@ -63,13 +76,12 @@
 	enhanced,
 	listing engine=minted,
 	minted language=LaTeX,
-	minted style=colorful,
+%	minted style=colorful,
 	minted options = {
 		linenos, 
 		breaklines=true, 
 		breakbefore=., 
-		% fontsize=\footnotesize, 
-		numbersep=3.7mm,
+		numbersep=3.75mm,
 		autogobble,
 		tabsize=4
 	},
@@ -84,13 +96,14 @@
 }
 
 
+
 % hyperref
 \usepackage{hyperref}
 \hypersetup{
 	colorlinks=true,
 	linkcolor=black,
 	filecolor=magenta,   
-	urlcolor=blue,
+	urlcolor=blue
 }
 
 % Header
@@ -99,16 +112,16 @@
 	\renewcommand{\headrulewidth}{0pt}
 	\renewcommand{\footrulewidth}{0pt}
 	\fancyhf{}
-	\rhead{\thepage}
+	\rhead{\ttfamily\thepage}
 %	\rfoot{\includegraphics[width=10em]{/logo/\arabic{page}.jpg}}
 }
 \fancypagestyle{fancy}{
 	\renewcommand{\headrulewidth}{2pt}
 	\renewcommand{\footrulewidth}{2pt}
 	\fancyhf{}
-	\rhead{\thepage}
+	\rhead{\ttfamily\thepage}
 	\lhead{\leftmark}
-	\cfoot{\leftmark}
+%	\cfoot{\leftmark}
 	\rfoot{\includegraphics[width=5em]{/logo/\arabic{page}.jpg}}
 }
 \pagestyle{fancy}
@@ -149,7 +162,7 @@
 
 % \maketitle
 \title{
-	\sffamily\Huge \textrm{\LaTeX}\ 秘笈
+	\sffamily\Huge \textrm{\LaTeX}\ 祕笈
 }
 
 \author{
@@ -166,7 +179,6 @@
 	\maketitle
 	\tableofcontents
 
-
 	\part{前言}
 	\chapter*{作者介紹}
 		
@@ -180,7 +192,7 @@
 		
 		
 	\chapter{\LaTeX 簡介}
-		歡迎各位讀者進入\LaTeX 的世界！
+		歡迎各位讀者進入\LaTeX 的世界！你現在正在閱讀的這份祕笈就是用\LaTeX 排版出來的喔！
 	\section{什麼是 \LaTeX ？}
 		\LaTeX 是一款基於\TeX 的排版系統，
 	\section{為什麼要學 \LaTeX ？}
@@ -189,11 +201,12 @@
 	\section{\LaTeX 的優缺點}
 		優點：
 		\begin{itemize}
+			\item 完全免費
 			\item 
 			\item 
 			\item 
-			\item 
-		\end{itemize}				
+		\end{itemize}
+			
 		缺點：
 		\begin{itemize}
 			\item 嵌入圖片與表格很麻煩，格式很難調。
@@ -224,15 +237,15 @@
 			
 % insert microsoft word meme
 % 程式碼 vs WYSIWYG
-			\label{tab:LaTeX vs MSWORD}
 			\caption{\textrm{\LaTeX}\ vs. Microsoft Word 大比拚}
+			\label{tab:LaTeX vs MSWORD}
 			
 		\end{table}
 			
 
 			
 	\chapter{環境初始設定}
-			\LaTeX 並非一個獨立運行的程式，而是仰賴許多其他
+		\LaTeX 並非一個獨立運行的程式，而是仰賴許多其他
 		
 		
 		
@@ -253,13 +266,13 @@
 					Hello, World!
 				\end{document}
 			\end{src}
-			\label{lst:Hello_World}
 			\caption{Hello World! in \textrm{\LaTeX}}
+			\label{lst:Hello_World}
 		\end{listing}
-
-
-
-
+		
+	程式碼 \ref{lst:Hello_World} 是一個簡單的\LaTeX 程式碼。
+		
+		
 %		\lipsum[1-150]
 %		\lipsum[1-150]
 %		\lipsum[1-150]	

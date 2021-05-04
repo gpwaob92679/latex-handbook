@@ -1,4 +1,4 @@
-# LaTeX 秘笈
+# LaTeX 祕笈
 
 <p align="center">
 	<img src="images/readme/science.png" width="500px">
