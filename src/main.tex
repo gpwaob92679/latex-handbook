@@ -1,7 +1,8 @@
 % Document Settings
-\documentclass[14pt, oneside]{extbook}
+\documentclass[14pt, a4paper, oneside]{extbook}
 %\usepackage[utf8]{inputenc}
-%\usepackage[T1]{fontenc}
+\usepackage[T1]{fontenc}
+
 \usepackage[
 	top=2cm,
 	bottom=2cm,
@@ -24,6 +25,18 @@
 \usepackage{graphicx}
 \graphicspath{{../images/}}
 
+\newcommand{\img}[1]{%
+	\ %
+	\raisebox{-0.1\baselineskip}{%
+		\includegraphics[
+		height=\baselineskip,
+		width=\baselineskip,
+		keepaspectratio,
+		]{#1}%
+	}%
+	\ %
+}
+
 
 % Font and Indent
 \usepackage{indentfirst}
@@ -32,12 +45,14 @@
 
 \usepackage{fontspec}
 \usepackage{xeCJK}
-\setCJKmainfont{標楷體}
 \setCJKfamilyfont{ming}{新細明體}
 \setCJKfamilyfont{kai}{標楷體}
 \setCJKfamilyfont{hei}{Taipei Sans TC Beta}
-\setCJKsansfont{Taipei Sans TC Beta}
-\setCJKmonofont{Taipei Sans TC Beta}
+\setCJKmainfont{標楷體}
+\setCJKsansfont{Noto Sans CJK TC}
+%\setCJKsansfont{Taipei Sans TC Beta}
+%\setCJKmonofont{Taipei Sans TC Beta}
+
 
 %\setmainfont{Times New Roman}
 \setsansfont{Aller}
@@ -48,10 +63,30 @@
 \usepackage{float}
 \usepackage[justification=centering, labelfont=sf, textfont=sf]{caption}
 
+
+
+\renewcommand{\figurename}{圖}
+
+\usepackage{array}
 \usepackage{booktabs}
 \usepackage{multirow}
-\renewcommand{\figurename}{圖}
+%\usepackage{tabularx}
 \renewcommand{\tablename}{表}
+
+\setlength{\arrayrulewidth}{1pt}
+\arrayrulecolor{black}
+\renewcommand{\arraystretch}{1.5}
+
+\usepackage{makecell}
+\renewcommand{\theadfont}{\bfseries}
+\newcommand{\Thline}{\Xhline{2\arrayrulewidth}}
+\newcolumntype{V}{!{\vrule width 2\arrayrulewidth}}
+
+%\newcolumntype{S}{>{\global\let\currentrowstyle\relax}}
+%\newcolumntype{C}{>{\currentrowstyle}}
+%\newcommand{\rowstyle}[1]{\gdef\currentrowstyle{#1}%
+%	#1\ignorespaces
+%}
 
 % Code
 \usepackage[chapter]{minted}
@@ -152,17 +187,21 @@
 
 
 % Debug
-\usepackage{lipsum}
+%\usepackage{lipsum}
 %\usepackage{showframe}
 
 % UNUSED
 %\usepackage{moreenum}
 
 
+% make sure \LaTeX is in \textrm
+\let\tmpLaTeX\LaTeX
+\renewcommand{\LaTeX}{\textrm{\tmpLaTeX}}
+
 
 % \maketitle
 \title{
-	\sffamily\Huge \textrm{\LaTeX}\ 祕笈
+	\sffamily\Huge \LaTeX\ 祕笈
 }
 
 \author{
@@ -175,8 +214,39 @@
 \renewcommand{\contentsname}{目錄 Table Of Contents}
 
 
+
+
+
 \begin{document}
-	\maketitle
+%	\maketitle
+	\begin{titlepage}
+		\begin{center}
+			\sffamily
+			
+%			\vspace*{1cm}
+%			temp title design
+			\begin{tcolorbox}[
+				halign=flush center,
+				drop fuzzy shadow,
+				arc=2pt,
+				height=4cm,
+				valign=center]
+				\Huge \LaTeX\ 祕笈
+			\end{tcolorbox}
+			
+			\vspace*{1cm}
+		
+			{\fontsize{24pt}{\baselineskip}\selectfont 武陵資訊讀書會 - \fontspec{Torus}{}GPwaob\_92679}
+			
+			\vfill
+			
+%			temp image
+			\includegraphics[width=0.8\textwidth]{readme/science.png}
+		
+		
+		\end{center}
+	\end{titlepage}
+
 	\tableofcontents
 
 	\part{前言}
@@ -193,12 +263,14 @@
 		
 	\chapter{\LaTeX 簡介}
 		歡迎各位讀者進入\LaTeX 的世界！你現在正在閱讀的這份祕笈就是用\LaTeX 排版出來的喔！
-	\section{什麼是 \LaTeX ？}
+	\section{什麼是\LaTeX ？}
 		\LaTeX 是一款基於\TeX 的排版系統，
-	\section{為什麼要學 \LaTeX ？}
-		\LaTeX 不管是作數理報告，或是，甚至
+	\section{為什麼要學\LaTeX ？}
+		\LaTeX 不管是作數理報告，或是....，甚至...
 %			譜、化學、棋譜、樂譜
-	\section{\LaTeX 的優缺點}
+	\section{\LaTeX 究竟有多強大？}
+		
+	\section{\LaTeX 的優缺點？}
 		優點：
 		\begin{itemize}
 			\item 完全免費
@@ -217,27 +289,28 @@
 
 	\section{\LaTeX vs. Microsoft Word}
 		下表為......陣營的\LaTeX 選手與......陣營的Microsoft Word選手大比拚：
-			
-			
+		
+		
 		\begin{table}[h]
 			\centering
-			\begin{tabular}{ c c }
-				\toprule
-				LaTeX \ \LaTeX & Microsoft Word \ \raisebox{-5pt}{\includegraphics[width=20pt]{/part1/ms_word.png}} \\
-				\midrule
-				&  \\
-				\midrule
-				&  \\
-				\midrule
-				&  \\
-				\midrule
-				&  \\
-				\bottomrule
+			\rowcolors{2}{gray!10}{gray!20}
+			\begin{tabular}{V >{\raggedright\arraybackslash}p{30ex} | >{\raggedright\arraybackslash}p{30ex} V}
+				\Thline
+				\rowcolor{cyan!50} LaTeX \ \LaTeX & Microsoft Word \img{part1/ms_word.png} \\
+				\hline
+				aaa & aaa \\
+				\hline
+				bbb & bbb \\
+				\hline
+				ccc & ccc \\
+				\hline
+				ddd & ddd \\
+				\Thline
 			\end{tabular}
 			
 % insert microsoft word meme
 % 程式碼 vs WYSIWYG
-			\caption{\textrm{\LaTeX}\ vs. Microsoft Word 大比拚}
+			\caption{\LaTeX\ vs. Microsoft Word 大比拚}
 			\label{tab:LaTeX vs MSWORD}
 			
 		\end{table}
@@ -266,17 +339,10 @@
 					Hello, World!
 				\end{document}
 			\end{src}
-			\caption{Hello World! in \textrm{\LaTeX}}
+			\caption{\sffamily Hello World! in \LaTeX}
 			\label{lst:Hello_World}
 		\end{listing}
 		
-	程式碼 \ref{lst:Hello_World} 是一個簡單的\LaTeX 程式碼。
-		
-		
-%		\lipsum[1-150]
-%		\lipsum[1-150]
-%		\lipsum[1-150]	
-	
-		
+
 	
 \end{document}
