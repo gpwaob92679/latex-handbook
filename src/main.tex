@@ -1,5 +1,5 @@
 % Document Settings
-\documentclass[14pt, a4paper, oneside]{extbook}
+\documentclass[12pt, a4paper, oneside]{extbook}
 %\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
@@ -25,7 +25,7 @@
 \usepackage{graphicx}
 \graphicspath{{../images/}}
 
-\newcommand{\img}[1]{%
+\newcommand{\img}[1]{ % for inline image insertion
 	\ %
 	\raisebox{-0.1\baselineskip}{%
 		\includegraphics[
@@ -37,12 +37,23 @@
 	\ %
 }
 
+\newcommand{\tabimg}[1]{ % for in-tabular image insertion
+	\raisebox{-0.3ex}{%
+		\includegraphics[
+		height=1.2em,
+		keepaspectratio,
+		]{#1}%
+	}%
+}
 
-% Font and Indent
+
+% Paragraph Style
 \usepackage{indentfirst}
 \setlength{\parindent}{2em}
-\linespread{1.1}
+\renewcommand{\baselinestretch}{1.25}
+\setlength{\parskip}{1ex}
 
+% Fonts
 \usepackage{fontspec}
 \usepackage{xeCJK}
 \setCJKfamilyfont{ming}{新細明體}
@@ -53,10 +64,10 @@
 %\setCJKsansfont{Taipei Sans TC Beta}
 %\setCJKmonofont{Taipei Sans TC Beta}
 
-
 %\setmainfont{Times New Roman}
 \setsansfont{Aller}
 \setmonofont{Consolas}
+
 
 % Floats, Figures, Tables, ...
 \usepackage[table]{xcolor}
@@ -64,29 +75,49 @@
 \usepackage[justification=centering, labelfont=sf, textfont=sf]{caption}
 
 
-
 \renewcommand{\figurename}{圖}
 
 \usepackage{array}
+\usepackage{tabularx}
 \usepackage{booktabs}
 \usepackage{multirow}
-%\usepackage{tabularx}
+\usepackage{diagbox}
 \renewcommand{\tablename}{表}
 
 \setlength{\arrayrulewidth}{1pt}
 \arrayrulecolor{black}
 \renewcommand{\arraystretch}{1.5}
 
-\usepackage{makecell}
-\renewcommand{\theadfont}{\bfseries}
-\newcommand{\Thline}{\Xhline{2\arrayrulewidth}}
-\newcolumntype{V}{!{\vrule width 2\arrayrulewidth}}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
 
-%\newcolumntype{S}{>{\global\let\currentrowstyle\relax}}
-%\newcolumntype{C}{>{\currentrowstyle}}
-%\newcommand{\rowstyle}[1]{\gdef\currentrowstyle{#1}%
-%	#1\ignorespaces
-%}
+
+\usepackage{makecell}
+\renewcommand{\theadfont}{\centering\bfseries}
+\newcommand{\Thline}{\Xhline{2\arrayrulewidth}}
+\newcolumntype{T}{!{\vrule width 2\arrayrulewidth}}
+%\newcolumntype{H}[1]{>{\hsize=#1\hsize\arraybackslash}X}
+
+
+
+% Enumerate and Itemize
+\usepackage{enumitem}
+\setlist{
+	labelsep=1ex,
+	labelindent=\parindent,
+	nosep
+}
+
+
+% Enum and Item for tabular (to avoid weird spacing issues)
+\newenvironment{tabitemize}{
+		\begin{minipage}[t]{\linewidth}
+		\begin{itemize}[label=\textbullet, nosep, left=0pt, after={\vspace{0.5\baselineskip}}]
+	}{
+		\end{itemize}
+		\end{minipage}
+	}
 
 % Code
 \usepackage[chapter]{minted}
@@ -162,8 +193,11 @@
 \pagestyle{fancy}
 
 
+
+
 % Chemistry and Physics
 \usepackage{chemfig}
+\usepackage{tikz}
 \usepackage[american]{circuitikz}
 
 
@@ -194,21 +228,23 @@
 %\usepackage{moreenum}
 
 
-% make sure \LaTeX is in \textrm
+% make sure \TeX and \LaTeX is in \textrm
+\let\tmpTeX\TeX
+\renewcommand{\TeX}{\textrm{\tmpTeX}}
 \let\tmpLaTeX\LaTeX
 \renewcommand{\LaTeX}{\textrm{\tmpLaTeX}}
 
 
 % \maketitle
-\title{
-	\sffamily\Huge \LaTeX\ 祕笈
-}
-
-\author{
-	\sffamily\LARGE 武陵資訊讀書會 \\\\
-	\fontspec{Torus}{}\LARGE GPwaob\_92679
-}
-\date{}
+%\title{
+%	\sffamily\Huge \LaTeX\ 祕笈
+%}
+%
+%\author{
+%	\sffamily\LARGE 武陵資訊讀書會 \\\\
+%	\fontspec{Torus}{}\LARGE GPwaob\_92679
+%}
+%\date{}
 
 % \tableofcontents
 \renewcommand{\contentsname}{目錄 Table Of Contents}
@@ -231,7 +267,7 @@
 				arc=2pt,
 				height=4cm,
 				valign=center]
-				\Huge \LaTeX\ 祕笈
+				\fontsize{36pt}{\baselineskip}\selectfont \LaTeX\ 祕笈
 			\end{tcolorbox}
 			
 			\vspace*{1cm}
@@ -255,21 +291,75 @@
 	\chapter*{推薦序}
 			
 			
-			
-		
-		
-		
 		
 		
 	\chapter{\LaTeX 簡介}
-		歡迎各位讀者進入\LaTeX 的世界！你現在正在閱讀的這份祕笈就是用\LaTeX 排版出來的喔！
+		歡迎各位讀者進入\LaTeX 的世界！
+		
+		
+%		你現在正在閱讀的這份祕笈就是用\LaTeX 排版出來的喔！
+
+%		情境
+%		故事 時間線
+	\section{什麼是\TeX ？}
 	\section{什麼是\LaTeX ？}
-		\LaTeX 是一款基於\TeX 的排版系統，
+		\LaTeX 是一款基於\TeX 的排版系統(typesetting system)
+
+		
+		既然說\LaTeX 比較像是一種程式語言，那就把他拿來與時下當紅的C++與Python來比較吧！
+		\begin{table}[H]
+			\centering
+			\rowcolors{2}{gray!20}{gray!10}
+			\sffamily
+%			logos pending
+			\begin{tabularx}{\textwidth}{Tp{0.26\textwidth}TX|X|XT}
+				\Thline
+				\rowcolor{cyan!50} \diagbox[innerwidth=0.26\textwidth, linewidth=2\arrayrulewidth]{使用軟體/屬性}{語言} &
+				\thead{\LaTeX \ \ LaTeX} &
+				\thead{\tabimg{part1/cpp_logo.png}\ \ C++} &
+				\thead{\tabimg{part1/python-logo.png}\ \ Python} \\ \Thline
+				編輯器(Editor)\ / \newline
+				整合開發環境(IDE) &
+				\begin{tabitemize}
+					\item Texmaker
+					\item TeXstudio
+					\item TeXworks
+				\end{tabitemize} &
+				\begin{tabitemize}
+					\item Dev-C++
+					\item Code::Blocks
+				\end{tabitemize} &
+				\begin{tabitemize}
+					\item PyCharm
+					\item Spyder
+				\end{tabitemize} \\ \hline
+				編譯器(Compiler)\ / \newline
+				直譯器(Interpreter) &
+				\begin{tabitemize}
+					\item pdfLaTeX
+					\item XeLaTeX
+					\item LuaLaTeX
+				\end{tabitemize} & 
+				\begin{tabitemize}
+					\item G++
+					\item MSVC
+				\end{tabitemize} &
+				\begin{tabitemize}
+					\item CPython
+					\item PyPy
+				\end{tabitemize} \\ \hline
+				輸出(Output) & .pdf & .exe & N/A \\ \hline
+				&  & & \\
+				\Thline
+			\end{tabularx}
+			\caption{\LaTeX\ vs\ C++\ vs\ Python}
+			\label{tab:LaTeX vs C++ vs Python}
+			
+		\end{table}
 	\section{為什麼要學\LaTeX ？}
 		\LaTeX 不管是作數理報告，或是....，甚至...
-%			譜、化學、棋譜、樂譜
 	\section{\LaTeX 究竟有多強大？}
-		
+%		譜、化學、棋譜、樂譜		
 	\section{\LaTeX 的優缺點？}
 		優點：
 		\begin{itemize}
@@ -291,35 +381,30 @@
 		下表為......陣營的\LaTeX 選手與......陣營的Microsoft Word選手大比拚：
 		
 		
-		\begin{table}[h]
+		\begin{table}[H]
 			\centering
-			\rowcolors{2}{gray!10}{gray!20}
-			\begin{tabular}{V >{\raggedright\arraybackslash}p{30ex} | >{\raggedright\arraybackslash}p{30ex} V}
+			\rowcolors{2}{gray!20}{gray!10}
+			\begin{tabularx}{0.8\textwidth}{T X | X T}
 				\Thline
-				\rowcolor{cyan!50} LaTeX \ \LaTeX & Microsoft Word \img{part1/ms_word.png} \\
-				\hline
-				aaa & aaa \\
-				\hline
-				bbb & bbb \\
-				\hline
-				ccc & ccc \\
-				\hline
-				ddd & ddd \\
-				\Thline
-			\end{tabular}
+				\rowcolor{cyan!50} \thead{\LaTeX \ LaTeX} &
+				\thead{\tabimg{part1/ms_word.png} Microsoft Word} \\ \hline
+				aaa & aaa \\ \hline
+				bbb & bbb \\ \hline
+				ccc & ccc \\ \hline
+				ddd & ddd \\ \Thline
+			\end{tabularx}
 			
 % insert microsoft word meme
 % 程式碼 vs WYSIWYG
 			\caption{\LaTeX\ vs. Microsoft Word 大比拚}
-			\label{tab:LaTeX vs MSWORD}
+			\label{tab:LaTeX vs Ms Word}
 			
 		\end{table}
 			
 
 			
 	\chapter{環境初始設定}
-		\LaTeX 並非一個獨立運行的程式，而是仰賴許多其他
-		
+		\LaTeX 並非一個獨立運行的程式，而是仰賴許多其他套件包(Packages)與...運行的排版系統。
 		
 		
 		
@@ -329,7 +414,7 @@
 			
 	\part{\LaTeX 入門}
 			
-	\chapter{寫出你的第一份 \LaTeX ！}
+	\chapter{寫出你的第一份 \LaTeX 文件 ！}
 	\section{Hello, World! in \LaTeX}
 
 		\begin{listing}[h]
