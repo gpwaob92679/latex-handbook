@@ -69,5 +69,9 @@
 
 - [LaTeX Project Official Site](https://www.latex-project.org/)
 - [MiKTeX Project Page](https://miktex.org/)
+- [TeX - LaTeX Stack Exchange](https://tex.stackexchange.com/)
+- [Documentation - Overleaf, Online LaTeX Editor](https://www.overleaf.com/learn)
+- [LaTeX - Wikibooks, open books for an open world](https://en.wikibooks.org/wiki/LaTeX)
+- [CTAN: Comprehensive TeX Archive Network](https://www.ctan.org/)
 
 ### 
