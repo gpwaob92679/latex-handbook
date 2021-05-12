@@ -23,7 +23,7 @@
 
 % graphicx
 \usepackage{graphicx}
-\graphicspath{{../images/}}
+\graphicspath{{../images/}{../images/part1}}
 
 \newcommand{\img}[1]{ % for inline image insertion
 	\ %
@@ -272,7 +272,7 @@
 			
 			\vspace*{1cm}
 		
-			{\fontsize{24pt}{\baselineskip}\selectfont 武陵資訊讀書會 - \fontspec{Torus}{}GPwaob\_92679}
+			{\fontsize{24pt}{\baselineskip}\selectfont 武陵資訊讀書會 - \fontspec{Torus}{} GPwaob\_92679}
 			
 			\vfill
 			
@@ -287,12 +287,13 @@
 
 	\part{前言}
 	\chapter*{作者介紹}
-		
+	\addcontentsline{toc}{chapter}{作者介紹}
 	\chapter*{推薦序}
-			
-			
-		
-		
+	\addcontentsline{toc}{chapter}{推薦序}  
+	
+	
+	
+	
 	\chapter{\LaTeX 簡介}
 		歡迎各位讀者進入\LaTeX 的世界！
 		
@@ -302,36 +303,39 @@
 %		情境
 %		故事 時間線
 	\section{什麼是\TeX ？}
+		\TeX 是美國電腦科學家Donald Knuth在1978年發表的一套排版軟體，。相較於市面上大多的排版軟體(如: Microsoft Word、LibreOffice Writer、Google Docs)，\TeX 沒有漂亮的圖形化介面(GUI)，而是像寫程式一樣，透過指令調整文件的格局與字型樣式。
 	\section{什麼是\LaTeX ？}
-		\LaTeX 是一款基於\TeX 的排版系統(typesetting system)
+		隨著科技的發展，當年的\TeX 早已不敷使用
 
 		
 		既然說\LaTeX 比較像是一種程式語言，那就把他拿來與時下當紅的C++與Python來比較吧！
+		
+		\footnotetext[1]{Microsoft Visual C++}
 		\begin{table}[H]
 			\centering
 			\rowcolors{2}{gray!20}{gray!10}
 			\sffamily
-%			logos pending
 			\begin{tabularx}{\textwidth}{Tp{0.26\textwidth}TX|X|XT}
 				\Thline
 				\rowcolor{cyan!50} \diagbox[innerwidth=0.26\textwidth, linewidth=2\arrayrulewidth]{使用軟體/屬性}{語言} &
 				\thead{\LaTeX \ \ LaTeX} &
-				\thead{\tabimg{part1/cpp_logo.png}\ \ C++} &
-				\thead{\tabimg{part1/python-logo.png}\ \ Python} \\ \Thline
+				\thead{\tabimg{cpp_logo.png}\ \ C++} &
+				\thead{\tabimg{python-logo.png}\ \ Python} \\ \Thline
 				編輯器(Editor)\ / \newline
 				整合開發環境(IDE) &
 				\begin{tabitemize}
-					\item Texmaker
-					\item TeXstudio
-					\item TeXworks
+					\item {Texmaker \tabimg{texmaker_logo.png}}
+					\item {TeXstudio \tabimg{Texstudio_Logo.png}}\label{key}
+					\item {TeXworks \tabimg{TeXworks256.png}}
 				\end{tabitemize} &
 				\begin{tabitemize}
-					\item Dev-C++
-					\item Code::Blocks
+					\item {Dev-C++ \tabimg{Dev_C++_logo.png}}
+					\item {Code::Blocks \tabimg{CodeBlocks_logo.png}}
 				\end{tabitemize} &
 				\begin{tabitemize}
-					\item PyCharm
-					\item Spyder
+					\item {PyCharm \tabimg{PyCharm_Icon.png}}
+					\item {Spyder \tabimg{Spyder_logo.png}}
+					\item {Jupyter \tabimg{Jupyter_logo.png}}
 				\end{tabitemize} \\ \hline
 				編譯器(Compiler)\ / \newline
 				直譯器(Interpreter) &
@@ -341,21 +345,22 @@
 					\item LuaLaTeX
 				\end{tabitemize} & 
 				\begin{tabitemize}
-					\item G++
-					\item MSVC
+					\item {G++ \tabimg{GNU_Compiler_Collection_logo}}
+					\item {MSVC\footnotemark[1] \tabimg{Visual_Studio_Icon_2019.png}}
 				\end{tabitemize} &
 				\begin{tabitemize}
 					\item CPython
 					\item PyPy
 				\end{tabitemize} \\ \hline
-				輸出(Output) & .pdf & .exe & N/A \\ \hline
+				輸出(Output) & .pdf \tabimg{PDF_file_icon.png} & .exe & N/A \\ \hline
 				&  & & \\
 				\Thline
 			\end{tabularx}
 			\caption{\LaTeX\ vs\ C++\ vs\ Python}
 			\label{tab:LaTeX vs C++ vs Python}
-			
+
 		\end{table}
+
 	\section{為什麼要學\LaTeX ？}
 		\LaTeX 不管是作數理報告，或是....，甚至...
 	\section{\LaTeX 究竟有多強大？}
@@ -374,7 +379,7 @@
 			\item 嵌入圖片與表格很麻煩，格式很難調。
 			\item 
 			\item 
-			\item 		
+			\item 
 		\end{itemize}
 
 	\section{\LaTeX vs. Microsoft Word}
@@ -387,7 +392,7 @@
 			\begin{tabularx}{0.8\textwidth}{T X | X T}
 				\Thline
 				\rowcolor{cyan!50} \thead{\LaTeX \ LaTeX} &
-				\thead{\tabimg{part1/ms_word.png} Microsoft Word} \\ \hline
+				\thead{\tabimg{ms_word.png} Microsoft Word} \\ \hline
 				aaa & aaa \\ \hline
 				bbb & bbb \\ \hline
 				ccc & ccc \\ \hline
@@ -417,16 +422,16 @@
 	\chapter{寫出你的第一份 \LaTeX 文件 ！}
 	\section{Hello, World! in \LaTeX}
 
-		\begin{listing}[h]
-			\begin{src}
-				\documentclass{article}
-				\begin{document}
-					Hello, World!
-				\end{document}
-			\end{src}
-			\caption{\sffamily Hello World! in \LaTeX}
-			\label{lst:Hello_World}
-		\end{listing}
+	\begin{listing}[h]
+		\begin{src}
+			\documentclass{article}
+			\begin{document}
+				Hello, World!
+			\end{document}
+		\end{src}
+		\caption{Hello World! in \LaTeX}
+		\label{lst:Hello_World}
+	\end{listing}
 		
 
 	
