@@ -303,15 +303,58 @@
 %		情境
 %		故事 時間線
 	\section{什麼是\TeX ？}
-		\TeX 是美國電腦科學家Donald Knuth在1978年發表的一套排版軟體，。相較於市面上大多的排版軟體(如: Microsoft Word、LibreOffice Writer、Google Docs)，\TeX 沒有漂亮的圖形化介面(GUI)，而是像寫程式一樣，透過指令調整文件的格局與字型樣式。
+		\TeX 是美國電腦科學家Donald Knuth在1978年發表的一套排版軟體，。相較於市面上大多的排版軟體(如: Microsoft Word、LibreOffice Writer、Google Docs)，\TeX 沒有漂亮的圖形化介面(GUI)，而是像寫程式一樣，先把指令(告訴電腦東西應該長怎樣)與文件內容(真的給人看的東西)寫在一個純文字檔後，再經過編譯器的編譯，產生最後供人類閱的文件檔。
 	\section{什麼是\LaTeX ？}
-		隨著科技的發展，當年的\TeX 早已不敷使用
+		隨著科技的發展，當年的\TeX 所提供的功能早已不敷使用，同時也被人覺得太複雜、不親民。因此，美國又有一位電腦科學家Leslie Lamport在1984年發表了基於\TeX 的排版系統\LaTeX ，提供更多實用的功能和更親民的指令集，也推廣了這套系統的應用。
+		
+		講白話一點，\LaTeX 其實就是\TeX 的PRO版，而且比原本的\TeX 好用n百倍，導致\TeX 被大眾打入冷宮了。
 
+	\section{為什麼要學\LaTeX ？}
+		\LaTeX 被廣泛應用於數學公式與科學論文的排版，許多學術期刊及國外的教科書都是使用\LaTeX 排版出。
+	\section{\LaTeX 究竟有多強大？}
+%		譜、化學、棋譜、樂譜
+	\section{\LaTeX 的優缺點？}
+		優點：
+		\begin{itemize}
+			\item 完全免費。
+			\item 編輯檔案時不受作業系統限制，只要是打得出字的機器都能直接編輯。
+			\item 非常適合數學公式的排版，可以排出漂亮的報告與論文。
+			\item 
+		\end{itemize}
 		
-		既然說\LaTeX 比較像是一種程式語言，那就把他拿來與時下當紅的C++與Python來比較吧！
+		缺點：
+		\begin{itemize}
+			\item 嵌入圖片與表格很麻煩，格式很難調。
+			\item 初始設定複雜、指令記憶難，入坑門檻高。
+			\item 
+			\item 
+		\end{itemize}
+
+	\section{\LaTeX 與其他軟體的比較}
+		首先，當然是與市面上最普遍的文書處理軟體Word來個大比拚啦！
 		
-		\footnotetext[1]{Microsoft Visual C++}
 		\begin{table}[H]
+			\centering
+			\rowcolors{2}{gray!20}{gray!10}
+			\begin{tabularx}{0.8\textwidth}{T X | X T}
+				\Thline
+				\rowcolor{cyan!50} \thead{\LaTeX \ LaTeX} &
+				\thead{\tabimg{ms_word.png} Microsoft Word} \\ \hline
+				aaa & aaa \\ \hline
+				bbb & bbb \\ \hline
+				ccc & ccc \\ \hline
+				ddd & ddd \\ \Thline
+			\end{tabularx}
+			
+% insert microsoft word meme
+% 程式碼 vs WYSIWYG
+			\caption{\LaTeX\ vs. Microsoft Word 大比拚}
+			\label{tab:LaTeX vs Ms Word}
+		\end{table}
+		
+		再者，既然說\LaTeX 比較像是一種程式語言，那當然要拿來與時下當紅的C++與Python來比較啊！
+		
+		\begin{table}[h]
 			\centering
 			\rowcolors{2}{gray!20}{gray!10}
 			\sffamily
@@ -322,10 +365,10 @@
 				\thead{\tabimg{cpp_logo.png}\ \ C++} &
 				\thead{\tabimg{python-logo.png}\ \ Python} \\ \Thline
 				編輯器(Editor)\ / \newline
-				整合開發環境(IDE) &
+				整合開發環境(IDE\footnotemark[1]) &
 				\begin{tabitemize}
 					\item {Texmaker \tabimg{texmaker_logo.png}}
-					\item {TeXstudio \tabimg{Texstudio_Logo.png}}\label{key}
+					\item {TeXstudio \tabimg{Texstudio_Logo.png}}
 					\item {TeXworks \tabimg{TeXworks256.png}}
 				\end{tabitemize} &
 				\begin{tabitemize}
@@ -346,7 +389,7 @@
 				\end{tabitemize} & 
 				\begin{tabitemize}
 					\item {G++ \tabimg{GNU_Compiler_Collection_logo}}
-					\item {MSVC\footnotemark[1] \tabimg{Visual_Studio_Icon_2019.png}}
+					\item {MSVC\footnotemark[2] \tabimg{Visual_Studio_Icon_2019.png}}
 				\end{tabitemize} &
 				\begin{tabitemize}
 					\item CPython
@@ -358,63 +401,19 @@
 			\end{tabularx}
 			\caption{\LaTeX\ vs\ C++\ vs\ Python}
 			\label{tab:LaTeX vs C++ vs Python}
-
 		\end{table}
-
-	\section{為什麼要學\LaTeX ？}
-		\LaTeX 不管是作數理報告，或是....，甚至...
-	\section{\LaTeX 究竟有多強大？}
-%		譜、化學、棋譜、樂譜		
-	\section{\LaTeX 的優缺點？}
-		優點：
-		\begin{itemize}
-			\item 完全免費
-			\item 
-			\item 
-			\item 
-		\end{itemize}
-			
-		缺點：
-		\begin{itemize}
-			\item 嵌入圖片與表格很麻煩，格式很難調。
-			\item 
-			\item 
-			\item 
-		\end{itemize}
-
-	\section{\LaTeX vs. Microsoft Word}
-		下表為......陣營的\LaTeX 選手與......陣營的Microsoft Word選手大比拚：
+		\footnotetext[1]{Integrated Development Environment}
+		\footnotetext[2]{Microsoft Visual C++}
 		
-		
-		\begin{table}[H]
-			\centering
-			\rowcolors{2}{gray!20}{gray!10}
-			\begin{tabularx}{0.8\textwidth}{T X | X T}
-				\Thline
-				\rowcolor{cyan!50} \thead{\LaTeX \ LaTeX} &
-				\thead{\tabimg{ms_word.png} Microsoft Word} \\ \hline
-				aaa & aaa \\ \hline
-				bbb & bbb \\ \hline
-				ccc & ccc \\ \hline
-				ddd & ddd \\ \Thline
-			\end{tabularx}
-			
-% insert microsoft word meme
-% 程式碼 vs WYSIWYG
-			\caption{\LaTeX\ vs. Microsoft Word 大比拚}
-			\label{tab:LaTeX vs Ms Word}
-			
-		\end{table}
-			
-
-			
 	\chapter{環境初始設定}
 		\LaTeX 並非一個獨立運行的程式，而是仰賴許多其他套件包(Packages)與...運行的排版系統。
 		
-		
-		
-		
-		
+	\section{\LaTeX 的編譯流程}
+	
+	\section{安裝\LaTeX 發行版 \textemdash\ MikTeX}
+	
+	\section{安裝\LaTeX 編輯器 \textemdash\ Texmaker}
+
 		
 			
 	\part{\LaTeX 入門}
