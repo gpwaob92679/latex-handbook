@@ -59,15 +59,22 @@
 \setCJKfamilyfont{ming}{新細明體}
 \setCJKfamilyfont{kai}{標楷體}
 \setCJKfamilyfont{hei}{Taipei Sans TC Beta}
-\setCJKmainfont{標楷體}
+\setCJKmainfont[AutoFakeBold=2]{標楷體}
 \setCJKsansfont{Noto Sans CJK TC}
 %\setCJKsansfont{Taipei Sans TC Beta}
-%\setCJKmonofont{Taipei Sans TC Beta}
+\setCJKmonofont{Noto Sans CJK TC}
 
 %\setmainfont{Times New Roman}
 \setsansfont{Aller}
 \setmonofont{Consolas}
 
+% For TeX-related logos
+\usepackage{hologo}
+\hologoFontSetup{general=\rmfamily}
+\let\tmpTeX\TeX
+\renewcommand{\TeX}{\textrm{\tmpTeX}}
+\let\tmpLaTeX\LaTeX
+\renewcommand{\LaTeX}{\textrm{\tmpLaTeX}}
 
 % Floats, Figures, Tables, ...
 \usepackage[table]{xcolor}
@@ -94,7 +101,7 @@
 
 
 \usepackage{makecell}
-\renewcommand{\theadfont}{\centering\bfseries}
+\renewcommand{\theadfont}{\centering\bfseries\large}
 \newcommand{\Thline}{\Xhline{2\arrayrulewidth}}
 \newcolumntype{T}{!{\vrule width 2\arrayrulewidth}}
 %\newcolumntype{H}[1]{>{\hsize=#1\hsize\arraybackslash}X}
@@ -110,21 +117,29 @@
 }
 
 
-% Enum and Item for tabular (to avoid weird spacing issues)
+% Enum and Item in tabular envs (to avoid weird spacing issues)
 \newenvironment{tabitemize}{
-		\begin{minipage}[t]{\linewidth}
+	\begin{minipage}[t]{\linewidth}
 		\begin{itemize}[label=\textbullet, nosep, left=0pt, after={\vspace{0.5\baselineskip}}]
-	}{
+}{
 		\end{itemize}
-		\end{minipage}
-	}
+	\end{minipage}
+}
+
+% Figures in tabular envs
+\newcommand{\tabfig}[1]{
+	\begin{minipage}[t]{\linewidth}
+		\centering
+		\vspace{-0.5\baselineskip}
+		\resizebox{0.95\linewidth}{!}{#1}
+		\vspace{0.5\baselineskip}
+	\end{minipage}
+}
 
 % Code
 \usepackage[chapter]{minted}
 \setminted{
-	linenos,
-	breaklines=true, 
-	breakbefore=.,
+	breaklines,
 	autogobble,
 	tabsize=4,
 }
@@ -145,8 +160,9 @@
 %	minted style=colorful,
 	minted options = {
 		linenos, 
-		breaklines=true, 
-		breakbefore=., 
+		breaklines=true,
+		breakanywhere, 
+		breakanywheresymbolpre=,
 		numbersep=3.75mm,
 		autogobble,
 		tabsize=4
@@ -197,6 +213,8 @@
 
 % Chemistry and Physics
 \usepackage{chemfig}
+\renewcommand\printatom[1]{\ensuremath{\mathsf{#1}}}
+
 \usepackage{tikz}
 \usepackage[american]{circuitikz}
 
@@ -228,25 +246,8 @@
 %\usepackage{moreenum}
 
 
-% make sure \TeX and \LaTeX is in \textrm
-\let\tmpTeX\TeX
-\renewcommand{\TeX}{\textrm{\tmpTeX}}
-\let\tmpLaTeX\LaTeX
-\renewcommand{\LaTeX}{\textrm{\tmpLaTeX}}
 
-
-% \maketitle
-%\title{
-%	\sffamily\Huge \LaTeX\ 祕笈
-%}
-%
-%\author{
-%	\sffamily\LARGE 武陵資訊讀書會 \\\\
-%	\fontspec{Torus}{}\LARGE GPwaob\_92679
-%}
-%\date{}
-
-% \tableofcontents
+% TOC
 \renewcommand{\contentsname}{目錄 Table Of Contents}
 
 
@@ -312,7 +313,67 @@
 	\section{為什麼要學\LaTeX ？}
 		\LaTeX 被廣泛應用於數學公式與科學論文的排版，許多學術期刊及國外的教科書都是使用\LaTeX 排版出。
 	\section{\LaTeX 究竟有多強大？}
-%		譜、化學、棋譜、樂譜
+		說到\LaTeX ，第一個想到的當然是它在數學公式與科學圖表優秀的排版啦！
+		\begin{table}[H]
+			\centering
+			\small
+			\rowcolors{2}{gray!20}{gray!10}
+			\setminted{fontsize=\tiny, breakafter=-=\}, breakaftersymbolpre=}
+			\begin{tabular}{Tp{5em}|>{\ttfamily}p{13ex}|>{\sffamily}p{5cm}|p{6cm}T}
+				\Thline 
+				\rowcolor{cyan!40} \thead{應用} & \thead{\textrm{套件}} & \thead{\textrm{範例}} & \thead{原始碼}(部分省略) \\ \hline
+				數學公式 & amsmath &  & \\ \hline
+				化學結構式 & chemfig &
+				\tabfig{\chemname[3ex]{\chemfig[angle increment=30]{*6(-=(--[1]-[-1]-[1]-[-1])-=(-OH)-(*6(-(<:[1]H)(*6(-=(-)---))-(<[7]H)-(-[6])(-[8])-O-))=)}}{\large 四氫大麻酚(Tetrahydrocannabinol, THC)}} &
+				\begin{minipage}[t]{\linewidth}
+					\begin{minted}{LaTeX}
+						\chemname[3ex]{\chemfig[angle increment=30]{
+						*6(-=(--[1]-[-1]-[1]-[-1])-=(-OH)-(*6(-(<:[1]H)
+						(*6(-=(-)---))-(<[7]H)-(-[6])(-[8])-O-))=)}
+						}{四氫大麻酚(Tetrahydrocannabinol, THC)}
+					\end{minted}
+				\end{minipage} \\ \hline
+				電路圖 & circuitikz &
+				\tabfig{
+					\begin{circuitikz}
+						\fill[blue!15!white] (-1, 0.8) rectangle (0.5,-0.8);
+						\fill[orange!20!white] (-1, -1.2) rectangle (0.5, -2.8);
+						\node[draw, color=blue] at (1.7, 0){\textbf{P-channel}};
+						\node[draw, color=orange] at (1.7, -2){\textbf{N-channel}};
+						\ctikzset{tripoles/pmos style/emptycircle}						
+						\draw (0,0) node[pmos](P){};
+						\draw (0, -2) node[nmos](N){};
+						\draw (P.D) -- (N.D);
+						\draw (P.S) to[short, -*] ++(0, 0.5) node[above]{$V_{dd}$};
+						\draw (N.S) -- ++(0, -0.5) node[ground](GND){}
+						(GND.south) node[below]{$GND$};
+						\draw (P.G) -- ++(-1, 0) -- ++(0, -1) node[](in){} -- ++(0, -1) -- (N.G);
+						\draw (in.center) to[short, *-*] ++(-1, 0) node[left]{$V_{in}$};
+						\draw (0, -1) to[short, *-*] ++(1, 0) node[right]{$V_{out}$};
+					\end{circuitikz}
+				} &
+				\begin{minipage}[t]{\linewidth}
+					\begin{minted}{LaTeX}
+						\begin{circuitikz}
+							\fill[blue!15!white] (-1, 0.8) rectangle (0.5,-0.8);
+							\fill[orange!20!white] (-1, -1.2) rectangle (0.5, -2.8);
+							\node[draw, color=blue] at (1.7, 0){\textbf{P-channel}};
+							\node[draw, color=orange] at (1.7, -2){\textbf{N-channel}};
+							\draw (0,0) node[pmos](P){};
+							\draw (0, -2) node[nmos](N){};
+							\draw (P.D) -- (N.D);
+							\draw (P.S) to[short, -*] ++(0, 0.5) node[above]{$V_{dd}$};
+							\draw (N.S) -- ++(0, -0.5) node[ground](GND){}
+							(GND.south) node[below]{$GND$};
+							\draw (P.G) -- ++(-1, 0) -- ++(0, -1) node[](in){} -- ++(0, -1) -- (N.G);
+							\draw (in.center) to[short, *-*] ++(-1, 0) node[left]{$V_{in}$};
+							\draw (0, -1) to[short, *-*] ++(1, 0) node[right]{$V_{out}$};
+						\end{circuitikz}
+					\end{minted}
+				\end{minipage} \\ \Thline
+			\end{tabular}
+			\label{tab: Applications of LaTeX}	
+		\end{table}
 	\section{\LaTeX 的優缺點？}
 		優點：
 		\begin{itemize}
@@ -348,8 +409,8 @@
 			
 % insert microsoft word meme
 % 程式碼 vs WYSIWYG
-			\caption{\LaTeX\ vs. Microsoft Word 大比拚}
-			\label{tab:LaTeX vs Ms Word}
+			\caption{\LaTeX\ vs. Microsoft Word}
+			\label{tab:LaTeX vs MSWord}
 		\end{table}
 		
 		再者，既然說\LaTeX 比較像是一種程式語言，那當然要拿來與時下當紅的C++與Python來比較啊！
@@ -383,9 +444,9 @@
 				編譯器(Compiler)\ / \newline
 				直譯器(Interpreter) &
 				\begin{tabitemize}
-					\item pdfLaTeX
-					\item XeLaTeX
-					\item LuaLaTeX
+					\item \hologo{pdfLaTeX}
+					\item \hologo{XeLaTeX}
+					\item \hologo{LuaLaTeX}
 				\end{tabitemize} & 
 				\begin{tabitemize}
 					\item {G++ \tabimg{GNU_Compiler_Collection_logo}}
@@ -395,7 +456,7 @@
 					\item CPython
 					\item PyPy
 				\end{tabitemize} \\ \hline
-				輸出(Output) & .pdf \tabimg{PDF_file_icon.png} & .exe & N/A \\ \hline
+				輸出(Output) & .pdf \tabimg{PDF_file_icon.png} & {.exe \tabimg{exe_icon.png}} & N/A \\ \hline
 				&  & & \\
 				\Thline
 			\end{tabularx}
@@ -409,13 +470,14 @@
 		\LaTeX 並非一個獨立運行的程式，而是仰賴許多其他套件包(Packages)與...運行的排版系統。
 		
 	\section{\LaTeX 的編譯流程}
-	
-	\section{安裝\LaTeX 發行版 \textemdash\ MikTeX}
+		在開始安裝
+	\section{安裝\LaTeX 發行版 \textemdash\ \hologo{MiKTeX}}
 	
 	\section{安裝\LaTeX 編輯器 \textemdash\ Texmaker}
 
-		
-			
+	\section{設定Texmaker}
+		在此筆者使用\hologo{XeLaTeX}作為編譯引擎，因為他對多國語言的支援度相當廣泛，也是所有引擎中對中文支援最好的引擎之一。
+	
 	\part{\LaTeX 入門}
 			
 	\chapter{寫出你的第一份 \LaTeX 文件 ！}
