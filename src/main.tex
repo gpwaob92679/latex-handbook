@@ -59,7 +59,7 @@
 \setCJKfamilyfont{ming}{新細明體}
 \setCJKfamilyfont{kai}{標楷體}
 \setCJKfamilyfont{hei}{Taipei Sans TC Beta}
-\setCJKmainfont[AutoFakeBold=2]{標楷體}
+\setCJKmainfont[AutoFakeBold=1.5]{標楷體}
 \setCJKsansfont{Noto Sans CJK TC}
 %\setCJKsansfont{Taipei Sans TC Beta}
 \setCJKmonofont{Noto Sans CJK TC}
@@ -118,20 +118,23 @@
 
 
 % Enum and Item in tabular envs (to avoid weird spacing issues)
-\newenvironment{tabitemize}{
+\newenvironment{tabitemize}{%
 	\begin{minipage}[t]{\linewidth}
 		\begin{itemize}[label=\textbullet, nosep, left=0pt, after={\vspace{0.5\baselineskip}}]
-}{
+}{%
 		\end{itemize}
 	\end{minipage}
 }
-
 % Figures in tabular envs
-\newcommand{\tabfig}[1]{
+\newcommand{\tabfig}[2][0.95]{%
+	\resizebox{#1\linewidth}{!}{#2}
+}
+
+\newenvironment{tabmp}{%
 	\begin{minipage}[t]{\linewidth}
-		\centering
-		\vspace{-0.5\baselineskip}
-		\resizebox{0.95\linewidth}{!}{#1}
+%		\centering
+		\vspace{-0.5\baselineskip}%
+}{%
 		\vspace{0.5\baselineskip}
 	\end{minipage}
 }
@@ -217,6 +220,9 @@
 
 \usepackage{tikz}
 \usepackage[american]{circuitikz}
+
+%
+\usepackage{texmate}
 
 
 %zhnumber
@@ -316,43 +322,48 @@
 		說到\LaTeX ，第一個想到的當然是它在數學公式與科學圖表優秀的排版啦！
 		\begin{table}[H]
 			\centering
-			\small
 			\rowcolors{2}{gray!20}{gray!10}
 			\setminted{fontsize=\tiny, breakafter=-=\}, breakaftersymbolpre=}
-			\begin{tabular}{Tp{5em}|>{\ttfamily}p{13ex}|>{\sffamily}p{5cm}|p{6cm}T}
+			\begin{tabular}{Tp{5em}|>{\small\ttfamily}p{12ex}|>{\centering\arraybackslash\sffamily}p{5.5cm}|p{6cm}T}
 				\Thline 
 				\rowcolor{cyan!40} \thead{應用} & \thead{\textrm{套件}} & \thead{\textrm{範例}} & \thead{原始碼}(部分省略) \\ \hline
 				數學公式 & amsmath &  & \\ \hline
 				化學結構式 & chemfig &
-				\tabfig{\chemname[3ex]{\chemfig[angle increment=30]{*6(-=(--[1]-[-1]-[1]-[-1])-=(-OH)-(*6(-(<:[1]H)(*6(-=(-)---))-(<[7]H)-(-[6])(-[8])-O-))=)}}{\large 四氫大麻酚(Tetrahydrocannabinol, THC)}} &
-				\begin{minipage}[t]{\linewidth}
+				\begin{tabmp}
+					\centering
+					\tabfig{\chemname[3.5ex]{\chemfig[angle increment=30]{*6(-=(--[1]-[-1]-[1]-[-1])-=(-OH)-(*6(-(<:[1]H)(*6(-=(-)---))-(<[7]H)-(-[6])(-[8])-O-))=)}}{\Large 四氫大麻酚(Tetrahydrocannabinol, THC)}}
+				\end{tabmp} &
+				\begin{tabmp}
 					\begin{minted}{LaTeX}
 						\chemname[3ex]{\chemfig[angle increment=30]{
 						*6(-=(--[1]-[-1]-[1]-[-1])-=(-OH)-(*6(-(<:[1]H)
 						(*6(-=(-)---))-(<[7]H)-(-[6])(-[8])-O-))=)}
 						}{四氫大麻酚(Tetrahydrocannabinol, THC)}
 					\end{minted}
-				\end{minipage} \\ \hline
+				\end{tabmp} \\ \hline
 				電路圖 & circuitikz &
-				\tabfig{
-					\begin{circuitikz}
-						\fill[blue!15!white] (-1, 0.8) rectangle (0.5,-0.8);
-						\fill[orange!20!white] (-1, -1.2) rectangle (0.5, -2.8);
-						\node[draw, color=blue] at (1.7, 0){\textbf{P-channel}};
-						\node[draw, color=orange] at (1.7, -2){\textbf{N-channel}};
-						\ctikzset{tripoles/pmos style/emptycircle}						
-						\draw (0,0) node[pmos](P){};
-						\draw (0, -2) node[nmos](N){};
-						\draw (P.D) -- (N.D);
-						\draw (P.S) to[short, -*] ++(0, 0.5) node[above]{$V_{dd}$};
-						\draw (N.S) -- ++(0, -0.5) node[ground](GND){}
-						(GND.south) node[below]{$GND$};
-						\draw (P.G) -- ++(-1, 0) -- ++(0, -1) node[](in){} -- ++(0, -1) -- (N.G);
-						\draw (in.center) to[short, *-*] ++(-1, 0) node[left]{$V_{in}$};
-						\draw (0, -1) to[short, *-*] ++(1, 0) node[right]{$V_{out}$};
-					\end{circuitikz}
-				} &
-				\begin{minipage}[t]{\linewidth}
+				\begin{tabmp}
+					\centering
+					\tabfig{
+						\begin{circuitikz}
+							\fill[blue!15!white] (-1, 0.8) rectangle (0.5,-0.8);
+							\fill[orange!20!white] (-1, -1.2) rectangle (0.5, -2.8);
+							\node[draw, color=blue] at (1.7, 0){\textbf{P-channel}};
+							\node[draw, color=orange] at (1.7, -2){\textbf{N-channel}};
+							\ctikzset{tripoles/pmos style/emptycircle}						
+							\draw (0,0) node[pmos](P){};
+							\draw (0, -2) node[nmos](N){};
+							\draw (P.D) -- (N.D);
+							\draw (P.S) to[short, -*] ++(0, 0.5) node[above]{$V_{dd}$};
+							\draw (N.S) -- ++(0, -0.5) node[ground](GND){}
+							(GND.south) node[below]{$GND$};
+							\draw (P.G) -- ++(-1, 0) -- ++(0, -1) node[](in){} -- ++(0, -1) -- (N.G);
+							\draw (in.center) to[short, *-*] ++(-1, 0) node[left]{$V_{in}$};
+							\draw (0, -1) to[short, *-*] ++(1, 0) node[right]{$V_{out}$};
+						\end{circuitikz}
+					}
+				\end{tabmp} &
+				\begin{tabmp}
 					\begin{minted}{LaTeX}
 						\begin{circuitikz}
 							\fill[blue!15!white] (-1, 0.8) rectangle (0.5,-0.8);
@@ -370,9 +381,70 @@
 							\draw (0, -1) to[short, *-*] ++(1, 0) node[right]{$V_{out}$};
 						\end{circuitikz}
 					\end{minted}
-				\end{minipage} \\ \Thline
+				\end{tabmp} \\ \Thline
 			\end{tabular}
-			\label{tab: Applications of LaTeX}	
+			\label{tab: Scientific Applications of LaTeX}	
+		\end{table}
+		但是這麼強大的軟體，不拿來做一些趣味用途真是太可惜了！
+		\begin{table}[H]
+			\centering
+			\rowcolors{2}{gray!20}{gray!10}
+			\setminted{fontsize=\tiny, breakafter=-=\}, breakaftersymbolpre=}
+			\begin{tabular}{Tp{5em}|>{\small\ttfamily}p{12ex}|>{\centering\arraybackslash\sffamily}p{5.2cm}|p{6cm}T}
+				\Thline 
+				\rowcolor{cyan!40} \thead{應用} & \thead{\textrm{套件}} & \thead{\textrm{範例}} & \thead{原始碼}(部分省略) \\ \hline
+				西洋棋 & skak \newline texmate &
+				\begin{tabmp}
+					\vspace{-0.8\baselineskip}
+					\renewcommand{\afterno}{.}
+					\whitename{Adolf Anderssen}
+					\blackname{Jean Dufresne}
+					\chessevent{Berlin/Berlin GER/1852}
+					\chessopening{Evans Gambit}
+					\ECO{C52}
+					\tiny
+					\makegametitle
+					\begin{texmate}
+						1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24.Bxe7\# \result{1-0}
+					\end{texmate}
+					\vspace{1mm}
+					\smallboard
+					\notationon
+					\preparediagram{Evergreen Game}{(Final position after 24.Bxe7\#)}
+					\centering
+					\tabfig[0.8]{\makediagrams}
+				\end{tabmp} &
+				\begin{tabmp}
+					\begin{minted}{LaTeX}
+						\whitename{Adolf Anderssen}
+						\blackname{Jean Dufresne}
+						\chessevent{Berlin/Berlin GER/1852}
+						\chessopening{Evans Gambit}
+						\ECO{C52}
+						\makegametitle
+						
+						\begin{texmate}
+							1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24.Bxe7\# \result{1-0}
+						\end{texmate}
+						\notationon
+						\preparediagram{Evergreen Game}{(Final position after 24.Bxe7#)}
+						\makediagrams
+					\end{minted}
+				\end{tabmp} \\ \hline
+				象棋 & cchess &
+				\begin{tabmp}
+					\tabfig{
+					}
+				\end{tabmp} &
+				\begin{tabmp}
+					\begin{minted}{LaTeX}
+					\end{minted}
+				\end{tabmp} \\ \hline
+				五線譜 & musixtex &
+				&
+				\\ \Thline
+			\end{tabular}
+			\label{tab: Fun Applications of LaTeX}	
 		\end{table}
 	\section{\LaTeX 的優缺點？}
 		優點：
