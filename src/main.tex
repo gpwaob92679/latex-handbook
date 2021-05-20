@@ -127,16 +127,17 @@
 }
 % Figures in tabular envs
 \newcommand{\tabfig}[2][0.95]{%
-	\resizebox{#1\linewidth}{!}{#2}
+	\resizebox{#1\linewidth}{!}{#2}% default width to 0.95\linewidth
 }
 
-\newenvironment{tabmp}{%
+\newenvironment{tabmp}[1][0.5]{%
 	\begin{minipage}[t]{\linewidth}
 %		\centering
+		\def\tabmpAfterSepMultiple{#1} % fix: argument can't be taken in end code
 		\vspace{-0.5\baselineskip}%
 }{%
-		\vspace{0.5\baselineskip}
-	\end{minipage}
+		\vspace{\tabmpAfterSepMultiple\baselineskip}% default spacing is 0.5\baselineskip
+	\end{minipage}%
 }
 
 % Code
@@ -146,7 +147,6 @@
 	autogobble,
 	tabsize=4,
 }
-
 
 % tcolorbox
 \usepackage[breakable, minted, skins]{tcolorbox}
@@ -221,13 +221,14 @@
 \usepackage{tikz}
 \usepackage[american]{circuitikz}
 
-%
+% chess, chinese chess, sudoku
 \usepackage{texmate}
-
+\makebarother
+\usepackage{cchess}
+\usepackage{sudoku}
 
 %zhnumber
 \usepackage{zhnumber}
-
 
 % Counters
 \usepackage{chngcntr}
@@ -333,7 +334,7 @@
 					\centering
 					\tabfig{\chemname[3.5ex]{\chemfig[angle increment=30]{*6(-=(--[1]-[-1]-[1]-[-1])-=(-OH)-(*6(-(<:[1]H)(*6(-=(-)---))-(<[7]H)-(-[6])(-[8])-O-))=)}}{\Large 四氫大麻酚(Tetrahydrocannabinol, THC)}}
 				\end{tabmp} &
-				\begin{tabmp}
+				\begin{tabmp}[-0.2]
 					\begin{minted}{LaTeX}
 						\chemname[3ex]{\chemfig[angle increment=30]{
 						*6(-=(--[1]-[-1]-[1]-[-1])-=(-OH)-(*6(-(<:[1]H)
@@ -363,15 +364,18 @@
 						\end{circuitikz}
 					}
 				\end{tabmp} &
-				\begin{tabmp}
+				\begin{tabmp}[-0.2]
 					\begin{minted}{LaTeX}
 						\begin{circuitikz}
+							% 繪製彩色標示方塊與註解
 							\fill[blue!15!white] (-1, 0.8) rectangle (0.5,-0.8);
 							\fill[orange!20!white] (-1, -1.2) rectangle (0.5, -2.8);
 							\node[draw, color=blue] at (1.7, 0){\textbf{P-channel}};
 							\node[draw, color=orange] at (1.7, -2){\textbf{N-channel}};
+							% 繪製 PMOS 與 CMOS
 							\draw (0,0) node[pmos](P){};
 							\draw (0, -2) node[nmos](N){};
+							% 繪製電線、接點與接點文字標示
 							\draw (P.D) -- (N.D);
 							\draw (P.S) to[short, -*] ++(0, 0.5) node[above]{$V_{dd}$};
 							\draw (N.S) -- ++(0, -0.5) node[ground](GND){}
@@ -383,8 +387,10 @@
 					\end{minted}
 				\end{tabmp} \\ \Thline
 			\end{tabular}
-			\label{tab: Scientific Applications of LaTeX}	
+			\caption{\LaTeX 的科學應用}
+			\label{tab: Scientific Applications of LaTeX}
 		\end{table}
+		\pagebreak
 		但是這麼強大的軟體，不拿來做一些趣味用途真是太可惜了！
 		\begin{table}[H]
 			\centering
@@ -414,18 +420,21 @@
 					\centering
 					\tabfig[0.8]{\makediagrams}
 				\end{tabmp} &
-				\begin{tabmp}
+				\begin{tabmp}[-0.2]
 					\begin{minted}{LaTeX}
+						% 繪製標題
 						\whitename{Adolf Anderssen}
 						\blackname{Jean Dufresne}
 						\chessevent{Berlin/Berlin GER/1852}
 						\chessopening{Evans Gambit}
 						\ECO{C52}
 						\makegametitle
-						
+						% 列印棋譜
 						\begin{texmate}
 							1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24.Bxe7\# \result{1-0}
 						\end{texmate}
+						% 繪製盤面
+						\smallboard
 						\notationon
 						\preparediagram{Evergreen Game}{(Final position after 24.Bxe7#)}
 						\makediagrams
@@ -433,17 +442,73 @@
 				\end{tabmp} \\ \hline
 				象棋 & cchess &
 				\begin{tabmp}
+					\centering
 					\tabfig{
+						\begin{cposition}
+							\piece{c}{10}{B} \piece{d}{10}{G} \piece{e}{10}{K} \piece{f}{10}{G}
+							\piece{d}{9}{p} \piece{h}{9}{n}
+							\piece{a}{8}{B} \piece{b}{8}{n}
+							\piece{h}{7}{N} \piece{i}{7}{C}
+							\piece{e}{5}{c} \piece{g}{5}{p}
+							\piece{a}{4}{p} \piece{g}{4}{N} \piece{i}{4}{p}
+							\piece{a}{3}{b} \piece{e}{3}{r} \piece{i}{3}{b}
+							\piece{e}{2}{g} \piece{f}{2}{P} \piece{g}{2}{R}
+							\piece{c}{1}{r} \piece{d}{1}{g} \piece{e}{1}{k} \piece{i}{1}{C}
+						\end{cposition}
 					}
 				\end{tabmp} &
-				\begin{tabmp}
+				\begin{tabmp}[-0.2]
 					\begin{minted}{LaTeX}
+						\begin{position}
+							\piece{c}{10}{B} \piece{d}{10}{G} \piece{e}{10}{K} \piece{f}{10}{G}
+							\piece{d}{9}{p} \piece{h}{9}{n}
+							\piece{a}{8}{B} \piece{b}{8}{n}
+							\piece{h}{7}{N} \piece{i}{7}{C}
+							\piece{e}{5}{c} \piece{g}{5}{p}
+							\piece{a}{4}{p} \piece{g}{4}{N} \piece{i}{4}{p}
+							\piece{a}{3}{b} \piece{e}{3}{r} \piece{i}{3}{b}
+							\piece{e}{2}{g} \piece{f}{2}{P} \piece{g}{2}{R}
+							\piece{c}{1}{r} \piece{d}{1}{g} \piece{e}{1}{k} \piece{i}{1}{C}
+						\end{position}
+					\end{minted}
+				\end{tabmp} \\ \hline
+				數獨 & sudoku &
+				\begin{tabmp}
+					\centering
+					\tabfig{
+					\begin{sudoku-block}
+						| | | | | | | | | |.
+						| | | | | | | | | |.
+						| | | | | | | | | |.
+						| | | | | | | | | |.
+						| | | | | | | | | |.
+						| | | | | | | | | |.
+						| | | | | | | | | |.
+						| | | | | | | | | |.
+						| | | | | | | | | |.
+					\end{sudoku-block}
+					}
+				\end{tabmp} &
+				\begin{tabmp}[-0.2]
+					\begin{minted}{LaTeX}
+						\begin{sudoku-block}
+							| | | | | | | | | |.
+							| | | | | | | | | |.
+							| | | | | | | | | |.
+							| | | | | | | | | |.
+							| | | | | | | | | |.
+							| | | | | | | | | |.
+							| | | | | | | | | |.
+							| | | | | | | | | |.
+							| | | | | | | | | |.
+						\end{sudoku-block}
 					\end{minted}
 				\end{tabmp} \\ \hline
 				五線譜 & musixtex &
 				&
 				\\ \Thline
 			\end{tabular}
+			\caption{\LaTeX 的趣味應用}
 			\label{tab: Fun Applications of LaTeX}	
 		\end{table}
 	\section{\LaTeX 的優缺點？}
