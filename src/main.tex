@@ -119,11 +119,11 @@
 
 % Enum and Item in tabular envs (to avoid weird spacing issues)
 \newenvironment{tabitemize}{%
-	\begin{minipage}[t]{\linewidth}
+	\begin{minipage}[t]{\linewidth}%
 		\begin{itemize}[label=\textbullet, nosep, left=0pt, after={\vspace{0.5\baselineskip}}]
 }{%
-		\end{itemize}
-	\end{minipage}
+		\end{itemize}%
+	\end{minipage}%
 }
 % Figures in tabular envs
 \newcommand{\tabfig}[2][0.95]{%
@@ -131,7 +131,7 @@
 }
 
 \newenvironment{tabmp}[1][0.5]{%
-	\begin{minipage}[t]{\linewidth}
+	\begin{minipage}[t]{\linewidth}%
 %		\centering
 		\def\tabmpAfterSepMultiple{#1} % fix: argument can't be taken in end code
 		\vspace{-0.5\baselineskip}%
@@ -144,7 +144,6 @@
 \usepackage[chapter]{minted}
 \setminted{
 	breaklines,
-	autogobble,
 	tabsize=4,
 }
 
@@ -167,7 +166,6 @@
 		breakanywhere, 
 		breakanywheresymbolpre=,
 		numbersep=3.75mm,
-		autogobble,
 		tabsize=4
 	},
 	drop fuzzy shadow,
@@ -223,7 +221,6 @@
 
 % chess, chinese chess, sudoku
 \usepackage{texmate}
-\makebarother
 \usepackage{cchess}
 \usepackage{sudoku}
 
@@ -262,7 +259,8 @@
 
 
 \begin{document}
-%	\maketitle
+	\makebarother % fix: texmate using "|" for chess envs
+
 	\begin{titlepage}
 		\begin{center}
 			\sffamily
@@ -301,7 +299,7 @@
 	
 	
 	
-	
+
 	\chapter{\LaTeX 簡介}
 		歡迎各位讀者進入\LaTeX 的世界！
 		
@@ -319,27 +317,29 @@
 
 	\section{為什麼要學\LaTeX ？}
 		\LaTeX 被廣泛應用於數學公式與科學論文的排版，許多學術期刊及國外的教科書都是使用\LaTeX 排版出。
-	\section{\LaTeX 究竟有多強大？}
+	\section{\LaTeX 究竟有多強大？}{%limit scope of "column type Z" to this section only
+		\newcolumntype{Z}{Tp{4.5em}|>{\small\ttfamily}p{12ex}|>{\centering\arraybackslash\sffamily}p{5.05cm}|p{5.75cm}T}
 		說到\LaTeX ，第一個想到的當然是它在數學公式與科學圖表優秀的排版啦！
+
 		\begin{table}[H]
 			\centering
 			\rowcolors{2}{gray!20}{gray!10}
 			\setminted{fontsize=\tiny, breakafter=-=\}, breakaftersymbolpre=}
-			\begin{tabular}{Tp{5em}|>{\small\ttfamily}p{12ex}|>{\centering\arraybackslash\sffamily}p{5.5cm}|p{6cm}T}
+			\begin{tabular}{Z}
 				\Thline 
 				\rowcolor{cyan!40} \thead{應用} & \thead{\textrm{套件}} & \thead{\textrm{範例}} & \thead{原始碼}(部分省略) \\ \hline
 				數學公式 & amsmath &  & \\ \hline
-				化學結構式 & chemfig &
+				化學\newline 結構式 & chemfig &
 				\begin{tabmp}
 					\centering
 					\tabfig{\chemname[3.5ex]{\chemfig[angle increment=30]{*6(-=(--[1]-[-1]-[1]-[-1])-=(-OH)-(*6(-(<:[1]H)(*6(-=(-)---))-(<[7]H)-(-[6])(-[8])-O-))=)}}{\Large 四氫大麻酚(Tetrahydrocannabinol, THC)}}
 				\end{tabmp} &
 				\begin{tabmp}[-0.2]
 					\begin{minted}{LaTeX}
-						\chemname[3ex]{\chemfig[angle increment=30]{
-						*6(-=(--[1]-[-1]-[1]-[-1])-=(-OH)-(*6(-(<:[1]H)
-						(*6(-=(-)---))-(<[7]H)-(-[6])(-[8])-O-))=)}
-						}{四氫大麻酚(Tetrahydrocannabinol, THC)}
+\chemname[3ex]{\chemfig[angle increment=30]{
+*6(-=(--[1]-[-1]-[1]-[-1])-=(-OH)-(*6(-(<:[1]H)
+(*6(-=(-)---))-(<[7]H)-(-[6])(-[8])-O-))=)}
+}{四氫大麻酚(Tetrahydrocannabinol, THC)}
 					\end{minted}
 				\end{tabmp} \\ \hline
 				電路圖 & circuitikz &
@@ -366,37 +366,37 @@
 				\end{tabmp} &
 				\begin{tabmp}[-0.2]
 					\begin{minted}{LaTeX}
-						\begin{circuitikz}
-							% 繪製彩色標示方塊與註解
-							\fill[blue!15!white] (-1, 0.8) rectangle (0.5,-0.8);
-							\fill[orange!20!white] (-1, -1.2) rectangle (0.5, -2.8);
-							\node[draw, color=blue] at (1.7, 0){\textbf{P-channel}};
-							\node[draw, color=orange] at (1.7, -2){\textbf{N-channel}};
-							% 繪製 PMOS 與 CMOS
-							\draw (0,0) node[pmos](P){};
-							\draw (0, -2) node[nmos](N){};
-							% 繪製電線、接點與接點文字標示
-							\draw (P.D) -- (N.D);
-							\draw (P.S) to[short, -*] ++(0, 0.5) node[above]{$V_{dd}$};
-							\draw (N.S) -- ++(0, -0.5) node[ground](GND){}
-							(GND.south) node[below]{$GND$};
-							\draw (P.G) -- ++(-1, 0) -- ++(0, -1) node[](in){} -- ++(0, -1) -- (N.G);
-							\draw (in.center) to[short, *-*] ++(-1, 0) node[left]{$V_{in}$};
-							\draw (0, -1) to[short, *-*] ++(1, 0) node[right]{$V_{out}$};
-						\end{circuitikz}
+\begin{circuitikz}
+	% 繪製彩色標示方塊與註解
+	\fill[blue!15!white] (-1, 0.8) rectangle (0.5,-0.8);
+	\fill[orange!20!white] (-1, -1.2) rectangle (0.5, -2.8);
+	\node[draw, color=blue] at (1.7, 0){\textbf{P-channel}};
+	\node[draw, color=orange] at (1.7, -2){\textbf{N-channel}};
+	% 繪製 PMOS 與 CMOS
+	\draw (0,0) node[pmos](P){};
+	\draw (0, -2) node[nmos](N){};
+	% 繪製電線、接點與接點文字標示
+	\draw (P.D) -- (N.D);
+	\draw (P.S) to[short, -*] ++(0, 0.5) node[above]{$V_{dd}$};
+	\draw (N.S) -- ++(0, -0.5) node[ground](GND){}
+	(GND.south) node[below]{$GND$};
+	\draw (P.G) -- ++(-1, 0) -- ++(0, -1) node[](in){} -- ++(0, -1) -- (N.G);
+	\draw (in.center) to[short, *-*] ++(-1, 0) node[left]{$V_{in}$};
+	\draw (0, -1) to[short, *-*] ++(1, 0) node[right]{$V_{out}$};
+\end{circuitikz}
 					\end{minted}
 				\end{tabmp} \\ \Thline
 			\end{tabular}
 			\caption{\LaTeX 的科學應用}
-			\label{tab: Scientific Applications of LaTeX}
+			\label{tab:Scientific Applications of LaTeX}
 		\end{table}
 		\pagebreak
-		但是這麼強大的軟體，不拿來做一些趣味用途真是太可惜了！
+		但是這麼強大的軟體，不拿來做一些趣味用途真是太可惜了！其實\LaTeX 中也有許多意想不到的套件，讓我們可以排版出科學用途之外的東西。以下是幾個貓貓覺得有趣的例子：
 		\begin{table}[H]
 			\centering
 			\rowcolors{2}{gray!20}{gray!10}
 			\setminted{fontsize=\tiny, breakafter=-=\}, breakaftersymbolpre=}
-			\begin{tabular}{Tp{5em}|>{\small\ttfamily}p{12ex}|>{\centering\arraybackslash\sffamily}p{5.2cm}|p{6cm}T}
+			\begin{tabular}{Z}
 				\Thline 
 				\rowcolor{cyan!40} \thead{應用} & \thead{\textrm{套件}} & \thead{\textrm{範例}} & \thead{原始碼}(部分省略) \\ \hline
 				西洋棋 & skak \newline texmate &
@@ -413,31 +413,31 @@
 					\begin{texmate}
 						1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24.Bxe7\# \result{1-0}
 					\end{texmate}
-					\vspace{1mm}
+					\vspace{2mm}
 					\smallboard
 					\notationon
 					\preparediagram{Evergreen Game}{(Final position after 24.Bxe7\#)}
 					\centering
-					\tabfig[0.8]{\makediagrams}
+					\tabfig[0.85]{\makediagrams}
 				\end{tabmp} &
 				\begin{tabmp}[-0.2]
 					\begin{minted}{LaTeX}
-						% 繪製標題
-						\whitename{Adolf Anderssen}
-						\blackname{Jean Dufresne}
-						\chessevent{Berlin/Berlin GER/1852}
-						\chessopening{Evans Gambit}
-						\ECO{C52}
-						\makegametitle
-						% 列印棋譜
-						\begin{texmate}
-							1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24.Bxe7\# \result{1-0}
-						\end{texmate}
-						% 繪製盤面
-						\smallboard
-						\notationon
-						\preparediagram{Evergreen Game}{(Final position after 24.Bxe7#)}
-						\makediagrams
+% 繪製標題
+\whitename{Adolf Anderssen}
+\blackname{Jean Dufresne}
+\chessevent{Berlin/Berlin GER/1852}
+\chessopening{Evans Gambit}
+\ECO{C52}
+\makegametitle
+% 列印棋譜
+\begin{texmate}
+	1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24.Bxe7\# \result{1-0}
+\end{texmate}
+% 繪製盤面
+\smallboard
+\notationon
+\preparediagram{Evergreen Game}{(Final position after 24.Bxe7#)}
+\makediagrams
 					\end{minted}
 				\end{tabmp} \\ \hline
 				象棋 & cchess &
@@ -459,58 +459,69 @@
 				\end{tabmp} &
 				\begin{tabmp}[-0.2]
 					\begin{minted}{LaTeX}
-						\begin{position}
-							\piece{c}{10}{B} \piece{d}{10}{G} \piece{e}{10}{K} \piece{f}{10}{G}
-							\piece{d}{9}{p} \piece{h}{9}{n}
-							\piece{a}{8}{B} \piece{b}{8}{n}
-							\piece{h}{7}{N} \piece{i}{7}{C}
-							\piece{e}{5}{c} \piece{g}{5}{p}
-							\piece{a}{4}{p} \piece{g}{4}{N} \piece{i}{4}{p}
-							\piece{a}{3}{b} \piece{e}{3}{r} \piece{i}{3}{b}
-							\piece{e}{2}{g} \piece{f}{2}{P} \piece{g}{2}{R}
-							\piece{c}{1}{r} \piece{d}{1}{g} \piece{e}{1}{k} \piece{i}{1}{C}
-						\end{position}
+\begin{position}
+	\piece{c}{10}{B} \piece{d}{10}{G} \piece{e}{10}{K} \piece{f}{10}{G}
+	\piece{d}{9}{p} \piece{h}{9}{n}
+	\piece{a}{8}{B} \piece{b}{8}{n}
+	\piece{h}{7}{N} \piece{i}{7}{C}
+	\piece{e}{5}{c} \piece{g}{5}{p}
+	\piece{a}{4}{p} \piece{g}{4}{N} \piece{i}{4}{p}
+	\piece{a}{3}{b} \piece{e}{3}{r} \piece{i}{3}{b}
+	\piece{e}{2}{g} \piece{f}{2}{P} \piece{g}{2}{R}
+	\piece{c}{1}{r} \piece{d}{1}{g} \piece{e}{1}{k} \piece{i}{1}{C}
+\end{position}
 					\end{minted}
 				\end{tabmp} \\ \hline
 				數獨 & sudoku &
 				\begin{tabmp}
 					\centering
-					\tabfig{
+					\tabfig[0.9]{
 					\begin{sudoku-block}
-						| | | | | | | | | |.
-						| | | | | | | | | |.
-						| | | | | | | | | |.
-						| | | | | | | | | |.
-						| | | | | | | | | |.
-						| | | | | | | | | |.
-						| | | | | | | | | |.
-						| | | | | | | | | |.
-						| | | | | | | | | |.
+						|8| | | | | | | | |.
+						| | |3|6| | | | | |.
+						| |7| | |9| |2| | |.
+						| |5| | | |7| | | |.
+						| | | | |4|5|7| | |.
+						| | | |1| | | |3| |.
+						| | |1| | | | |6|8|.
+						| | |8|5| | | |1| |.
+						| |9| | | | |4| | |.
 					\end{sudoku-block}
 					}
 				\end{tabmp} &
 				\begin{tabmp}[-0.2]
 					\begin{minted}{LaTeX}
-						\begin{sudoku-block}
-							| | | | | | | | | |.
-							| | | | | | | | | |.
-							| | | | | | | | | |.
-							| | | | | | | | | |.
-							| | | | | | | | | |.
-							| | | | | | | | | |.
-							| | | | | | | | | |.
-							| | | | | | | | | |.
-							| | | | | | | | | |.
-						\end{sudoku-block}
+\begin{sudoku-block}
+	|8| | | | | | | | |.
+	| | |3|6| | | | | |.
+	| |7| | |9| |2| | |.
+	| |5| | | |7| | | |.
+	| | | | |4|5|7| | |.
+	| | | |1| | | |3| |.
+	| | |1| | | | |6|8|.
+	| | |8|5| | | |1| |.
+	| |9| | | | |4| | |.
+\end{sudoku-block}
 					\end{minted}
 				\end{tabmp} \\ \hline
+			\end{tabular}
+			\phantomcaption % To compensate for missing \caption
+		\end{table}
+		\begin{table}[H]
+			\ContinuedFloat
+			\centering
+			\rowcolors{0}{gray!20}{gray!10}
+			\setminted{fontsize=\tiny, breakafter=-=\}, breakaftersymbolpre=}
+			\begin{tabular}{Z}
+				\hline
 				五線譜 & musixtex &
 				&
 				\\ \Thline
 			\end{tabular}
 			\caption{\LaTeX 的趣味應用}
-			\label{tab: Fun Applications of LaTeX}	
+			\label{tab:Fun Applications of LaTeX}	
 		\end{table}
+		}
 	\section{\LaTeX 的優缺點？}
 		優點：
 		\begin{itemize}
@@ -622,10 +633,10 @@
 
 	\begin{listing}[h]
 		\begin{src}
-			\documentclass{article}
-			\begin{document}
-				Hello, World!
-			\end{document}
+\documentclass{article}
+\begin{document}
+	Hello, World!
+\end{document}
 		\end{src}
 		\caption{Hello World! in \LaTeX}
 		\label{lst:Hello_World}
