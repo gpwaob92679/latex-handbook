@@ -145,6 +145,7 @@
 \setminted{
 	breaklines,
 	tabsize=4,
+	style=texstudio
 }
 
 % tcolorbox
@@ -219,10 +220,11 @@
 \usepackage{tikz}
 \usepackage[american]{circuitikz}
 
-% chess, chinese chess, sudoku
+% chess, chinese chess, sudoku, labyrinth
 \usepackage{texmate}
 \usepackage{cchess}
 \usepackage{sudoku}
+\usepackage{labyrinth}
 
 %zhnumber
 \usepackage{zhnumber}
@@ -317,16 +319,16 @@
 
 	\section{為什麼要學\LaTeX ？}
 		\LaTeX 被廣泛應用於數學公式與科學論文的排版，許多學術期刊及國外的教科書都是使用\LaTeX 排版出。
-	\section{\LaTeX 究竟有多強大？}{%limit scope of "column type Z" to this section only
+	\section{\LaTeX 究竟有多強大？}{%limit scope of "column type Z" and "setminted" to this section only
 		\newcolumntype{Z}{Tp{4.5em}|>{\small\ttfamily}p{12ex}|>{\centering\arraybackslash\sffamily}p{5.05cm}|p{5.75cm}T}
+		\setminted{fontsize=\tiny, breakafter=-=\}, breakaftersymbolpre=, tabsize=2}
 		說到\LaTeX ，第一個想到的當然是它在數學公式與科學圖表優秀的排版啦！
 
 		\begin{table}[H]
 			\centering
 			\rowcolors{2}{gray!20}{gray!10}
-			\setminted{fontsize=\tiny, breakafter=-=\}, breakaftersymbolpre=}
 			\begin{tabular}{Z}
-				\Thline 
+				\Thline
 				\rowcolor{cyan!40} \thead{應用} & \thead{\textrm{套件}} & \thead{\textrm{範例}} & \thead{原始碼}(部分省略) \\ \hline
 				數學公式 & amsmath &  & \\ \hline
 				化學\newline 結構式 & chemfig &
@@ -395,7 +397,6 @@
 		\begin{table}[H]
 			\centering
 			\rowcolors{2}{gray!20}{gray!10}
-			\setminted{fontsize=\tiny, breakafter=-=\}, breakaftersymbolpre=}
 			\begin{tabular}{Z}
 				\Thline 
 				\rowcolor{cyan!40} \thead{應用} & \thead{\textrm{套件}} & \thead{\textrm{範例}} & \thead{原始碼}(部分省略) \\ \hline
@@ -507,15 +508,66 @@
 			\end{tabular}
 			\phantomcaption % To compensate for missing \caption
 		\end{table}
+		\pagebreak
 		\begin{table}[H]
 			\ContinuedFloat
 			\centering
 			\rowcolors{0}{gray!20}{gray!10}
-			\setminted{fontsize=\tiny, breakafter=-=\}, breakaftersymbolpre=}
+
 			\begin{tabular}{Z}
 				\hline
 				五線譜 & musixtex &
 				&
+				\\ \hline
+				迷宮 & labyrinth &
+				\begin{tabmp}[0]
+					\centering
+					\begin{labyrinth}[unit=7.5pt]{19}{20}
+						\h *9+---*7+
+						\v +*5-+--+--+---+--+ \h -*4+--+-+-*4+--+
+						\v +*4-++-++---+--++-+ \h *4+--+--+++--++--+
+						\v +---++-++---+++--+-+ \h -++--+---++*4-+++
+						\v +--++-+-++-+-+++---+ \h ++--+-+++--++---+++
+						\v +--+-+*4-++-*4+--+ \h -+++-*4+-+*6-+
+						\v +---++---++-++-+-+-+ \h +++---++--++-++---+
+						\v +--++---++--+--+++-+ \h -+--+++--++-++---+
+						\v +-++---++--+--+-++-+ \h +---++--++-++-++--+
+						\v +-+++-+++--+-++--+-+ \h -+*7-++*4-+++
+						\v ++-*6+-+-+-+-+--+ \h --+*8-*4+--++
+						\v ++--*8+-+-++--+ \h -+++*{12}-++
+						\v +-+--+-+-++-+-++--++ \h +--*7+-+++-++
+						\v +-+---+---+---+-+-++ \h -++-+--++-+++-++-+
+						\v ++-+-+---++-+-+--+-+ \h ---+-+++*5-+-++-+
+						\v +++-++--++-++-++-+-+ \h --+---+--++-+*4-+
+						\v ++-+-+-++--++-+-+-++ \h -+-+++--++*4-+++
+						\v +---+-++--*5+-*4+ \h -++*4-++
+						\v ++-*4+--+-+--*6+ \h *6-++-*5+
+						\v *4+-++*8-+-+++ \h ---+++-+-+-*6+
+						\v +-+*4-+--+*8-+ \h *7+---*9+
+						\autosolution[font=\color{red}](8,0)(10,19){u}
+					\end{labyrinth}
+				\end{tabmp} &
+				\begin{tabmp}[-0.2]
+					\begin{minted}{LaTeX}
+\begin{labyrinth}[unit=7.5pt]{19}{20}
+	% 繪製迷宮
+	\h *9+---*7+
+	\v +*5-+--+--+---+--+ \h -*4+--+-+-*4+--+
+	\v +*4-++-++---+--++-+ \h *4+--+--+++--++--+
+	\v +---++-++---+++--+-+ \h -++--+---++*4-+++
+	\v +--++-+-++-+-+++---+ \h ++--+-+++--++---+++
+	\v +--+-+*4-++-*4+--+ \h -+++-*4+-+*6-+
+	\v +---++---++-++-+-+-+ \h +++---++--++-++---+
+	\v +--++---++--+--+++-+ \h -+--+++--++-++---+
+	\v +-++---++--+--+-++-+ \h +---++--++-++-++--+
+	\v +-+++-+++--+-++--+-+ \h -+*7-++*4-+++
+	% (略...)
+	
+	% 繪製解法路徑
+	\autosolution[font=\color{red}](8,0)(10,19){u}
+\end{labyrinth}
+					\end{minted}
+				\end{tabmp}
 				\\ \Thline
 			\end{tabular}
 			\caption{\LaTeX 的趣味應用}
@@ -541,11 +593,10 @@
 
 	\section{\LaTeX 與其他軟體的比較}
 		首先，當然是與市面上最普遍的文書處理軟體Word來個大比拚啦！
-		
 		\begin{table}[H]
 			\centering
 			\rowcolors{2}{gray!20}{gray!10}
-			\begin{tabularx}{0.8\textwidth}{T X | X T}
+			\begin{tabularx}{0.8\textwidth}{TX|XT}
 				\Thline
 				\rowcolor{cyan!50} \thead{\LaTeX \ LaTeX} &
 				\thead{\tabimg{ms_word.png} Microsoft Word} \\ \hline
@@ -560,9 +611,7 @@
 			\caption{\LaTeX\ vs. Microsoft Word}
 			\label{tab:LaTeX vs MSWord}
 		\end{table}
-		
 		再者，既然說\LaTeX 比較像是一種程式語言，那當然要拿來與時下當紅的C++與Python來比較啊！
-		
 		\begin{table}[h]
 			\centering
 			\rowcolors{2}{gray!20}{gray!10}
@@ -641,7 +690,4 @@
 		\caption{Hello World! in \LaTeX}
 		\label{lst:Hello_World}
 	\end{listing}
-		
-
-	
 \end{document}
