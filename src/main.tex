@@ -13,13 +13,10 @@
 	footskip=50pt
 ]{geometry} 
 
-
 % AMS Packages
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
-
-
 
 % graphicx
 \usepackage{graphicx}
@@ -67,6 +64,7 @@
 %\setmainfont{Times New Roman}
 \setsansfont{Aller}
 \setmonofont{Consolas}
+\newfontfamily{\OSfamily}{Open Sans}
 
 % For TeX-related logos
 \usepackage{hologo}
@@ -306,7 +304,7 @@
 	
 
 	\chapter{\LaTeX 簡介}
-		歡迎各位讀者進入\LaTeX 的世界！
+		歡迎各位讀者進入\LaTeX 的世界！在真正開始用\LaTeX 寫出漂亮
 		
 		
 %		你現在正在閱讀的這份祕笈就是用\LaTeX 排版出來的喔！
@@ -314,14 +312,25 @@
 %		情境
 %		故事 時間線
 	\section{什麼是\TeX ？}
-		\TeX 是美國電腦科學家Donald Knuth在1978年發表的一套排版軟體，。相較於市面上大多的排版軟體(如: Microsoft Word、LibreOffice Writer、Google Docs)，\TeX 沒有漂亮的圖形化介面(GUI)，而是像寫程式一樣，先把指令(告訴電腦東西應該長怎樣)與文件內容(真的給人看的東西)寫在一個純文字檔後，再經過編譯器的編譯，產生最後供人類閱的文件檔。
+		\TeX 是美國電腦科學家Donald Knuth最初在1978年發表的一套排版軟體，。相較於市面上大多的排版軟體(如: Microsoft Word、LibreOffice Writer、Google Docs)，\TeX 沒有漂亮的圖形化介面(GUI)，而是像寫程式一樣，先把指令(告訴電腦東西應該長怎樣)與文件內容(真的給人看的東西)寫在一個純文字檔後，再經過編譯器的編譯，產生最後供人類閱讀的文件檔。
+		
+		\noindent{\fontspec{標楷體}※}為了與\TeX 後續衍生出的一大堆程式區別，這種最早出現、最陽春的\TeX 也經常被稱為原版\TeX (Plain \TeX) 。
+		
 	\section{什麼是\LaTeX ？}
-		隨著科技的發展，當年的\TeX 所提供的功能早已不敷使用，同時也被人覺得太複雜、不親民。因此，美國又有一位電腦科學家Leslie Lamport在1984年發表了基於\TeX 的排版系統\LaTeX ，提供更多實用的功能和更親民的指令集，也推廣了這套系統的應用。
+		隨著科技的發展，當年的原版\TeX 所提供的功能早已不敷使用，同時也被人覺得太複雜、不親民。因此，美國又有一位電腦科學家Leslie Lamport在1984年發表了基於\TeX 的排版系統\LaTeX ，提供更多實用的功能和更親民的指令集，同時也推廣了這整套系統的應用。 
 		
 		講白話一點，\LaTeX 其實就是\TeX 的PRO版，而且比原本的\TeX 好用n百倍，導致\TeX 被大眾打入冷宮了。
 
 	\section{為什麼要學\LaTeX ？}
-		\LaTeX 被廣泛應用於數學公式與科學論文的排版，許多學術期刊及國外的教科書都是使用\LaTeX 排版出。
+		\
+		\begin{itemize}
+			\item 完全免費。對，你沒看錯，所有你會用到的軟體都是完全免費。
+			\item 非常適合數學公式與各種科學圖表的排版，可以排出漂亮的報告與論文。許多學術期刊及國外的教科書都是使用\LaTeX 排版出。
+			\item 編輯檔案時不受作業系統限制，只要是打得出字的機器都能直接編輯，甚至可以用摩斯電碼傳給你朋友。
+			\item 讓你看起來很像某個資訊電神在寫程式；或是某個駭客在入侵學校系統，盜段考考卷出來洩題給同學，然後再跟你同學討錢。
+			\item 讓你的心血不容易被別人抄襲。(就算懂\LaTeX 的人也可能看不懂你的指令寫法)
+		\end{itemize}
+%		
 	\section{\LaTeX 究竟有多強大？}{%limit scope of "column type Z" and "setminted" to this section only
 		\newcolumntype{Z}{Tp{4.5em}|>{\small\ttfamily}p{12ex}|>{\centering\arraybackslash\sffamily}p{5.05cm}|p{5.75cm}T}
 		\setminted{fontsize=\tiny, breakafter=-=\}, breakaftersymbolpre=, tabsize=2}
@@ -578,15 +587,6 @@
 		\end{table}
 		}
 	\section{\LaTeX 的優缺點？}
-		優點：
-		\begin{itemize}
-			\item 完全免費。
-			\item 非常適合數學公式的排版，可以排出漂亮的報告與論文。
-			\item 編輯檔案時不受作業系統限制，只要是打得出字的機器都能直接編輯，甚至可以用摩斯電碼傳給你朋友。
-			\item 讓你看起來很像某個資訊電神在寫程式；或是某個駭客在入侵學校系統，盜段考考卷出來洩題給同學，然後再跟你同學討錢。
-			\item 讓你的檔案不容易被別人盜。(就算懂\LaTeX 的人也可能看不懂你的指令寫法)
-		\end{itemize}
-		
 		缺點：
 		\begin{itemize}
 			\item 嵌入圖片與表格很麻煩，格式很難調。
@@ -619,7 +619,7 @@
 		\begin{table}[h]
 			\centering
 			\rowcolors{2}{gray!20}{gray!10}
-			\sffamily
+			\OSfamily
 			\begin{tabularx}{\textwidth}{Tp{0.26\textwidth}TX|X|XT}
 				\Thline
 				\rowcolor{cyan!50} \diagbox[innerwidth=0.26\textwidth, linewidth=2\arrayrulewidth]{使用軟體/屬性}{語言} &
