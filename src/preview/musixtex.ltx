@@ -1,0 +1,45 @@
+%\input{../template/preview_border1cm.tex}
+%\standaloneconfig{border=2cm}
+
+\documentclass{article}
+
+\usepackage{musixtex}
+\input{musixper}
+
+\renewcommand\raisebarno{2\internote}%
+\renewcommand\shiftbarno{1.3\Interligne}%
+\renewcommand\fontbarno{\bf}
+
+
+\begin{document}
+
+	\begin{music}
+		\normalmusicsize
+		\parindent12mm
+		
+		\instrumentnumber{5}
+		\sepbarrules
+		
+		\setname1{Piano}
+		\setstaffs1{2}
+		\setclef1{00}
+		
+		\setname2{Drums}
+		\setclefsymbol{2}\drumclef
+		
+		\generalsignature{3}
+
+		\generalmeter{\meterfrac44}
+		
+				
+		\startextract
+		\Notes\ibu0f0\qb0{cge}\tbu0\qb0g|\hl j\en
+		\Notes\ibu0f0\qb0{cge}\tbu0\qb0g|\ql l\sk\ql n\en
+		\bar
+		\Notes\ibu0f0\qb0{dgf}|\qlp i\en
+		\notes\tbu0\qb0g|\ibbl1j3\qb1j\tbl1\qb1k\en
+		\Notes\ibu0c0\qb0{cge}\tbu0\qb0g|\hl j\en
+		\endextract
+	\end{music}
+
+\end{document}
