@@ -236,9 +236,8 @@
 % Title Styles
 \usepackage{titlesec}
 \titleformat{\chapter}[frame]{\normalfont\huge\bfseries}{第\ \thechapter\ 章}{20pt}{\Huge}
-\titlespacing{\chapter}{0pt}{-10pt}{40pt}
-\titleformat{\section}
-{\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titlespacing{\chapter}{0pt}{-15pt}{30pt}
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
 %\titleformat{\part}[]
 
 
@@ -304,37 +303,46 @@
 	
 
 	\chapter{\LaTeX 簡介}
-		歡迎各位讀者進入\LaTeX 的世界！在真正開始用\LaTeX 寫出漂亮
+		歡迎各位讀者進入\LaTeX 的世界！在真正開始使用\LaTeX 前，先讓我們揭開\LaTeX 複雜的身世背景、看看\LaTeX 強大的威力吧！(怎麼寫得有點中二= =)
 		
-		
-%		你現在正在閱讀的這份祕笈就是用\LaTeX 排版出來的喔！
-
-%		情境
-%		故事 時間線
 	\section{什麼是\TeX ？}
-		\TeX 是美國電腦科學家Donald Knuth最初在1978年發表的一套排版軟體，。相較於市面上大多的排版軟體(如: Microsoft Word、LibreOffice Writer、Google Docs)，\TeX 沒有漂亮的圖形化介面(GUI)，而是像寫程式一樣，先把指令(告訴電腦東西應該長怎樣)與文件內容(真的給人看的東西)寫在一個純文字檔後，再經過編譯器的編譯，產生最後供人類閱讀的文件檔。
+		\TeX 是美國電腦科學家Donald Knuth最初在1978年發表的一套排版軟體，同時也是一種標記式語言(Markup Language)。相較於市面上大多的排版軟體(如: Microsoft Word、LibreOffice Writer、Google Docs)，\TeX 沒有漂亮的圖形化介面(GUI)，而是像寫程式一樣，先把指令(告訴電腦文字與版面應該長怎樣)與文件內容(真的給人看的東西)寫在一個純文字檔後，再經過編譯器的編譯，產生最後可供人類閱讀的文件檔。
 		
 		\noindent{\fontspec{標楷體}※}為了與\TeX 後續衍生出的一大堆程式區別，這種最早出現、最陽春的\TeX 也經常被稱為原版\TeX (Plain \TeX) 。
 		
 	\section{什麼是\LaTeX ？}
-		隨著科技的發展，當年的原版\TeX 所提供的功能早已不敷使用，同時也被人覺得太複雜、不親民。因此，美國又有一位電腦科學家Leslie Lamport在1984年發表了基於\TeX 的排版系統\LaTeX ，提供更多實用的功能和更親民的指令集，同時也推廣了這整套系統的應用。 
+		隨著科技的發展，當年的原版\TeX 所提供的功能早已不敷使用，同時也被人覺得太複雜、不親民。因此，美國又有一位電腦科學家Leslie Lamport在1984年發表了基於\TeX 的排版系統\LaTeX ，支援更多實用的功能和更親民的指令集，也推廣了這整套系統的應用。 
 		
-		講白話一點，\LaTeX 其實就是\TeX 的PRO版，而且比原本的\TeX 好用n百倍，導致\TeX 被大眾打入冷宮了。
+		講白話一點，\LaTeX 其實就是\TeX 的PRO版，而且比原本的\TeX 好用n百倍，導致\TeX 已經被大眾打入冷宮了。
 
-	\section{為什麼要學\LaTeX ？}
-		\
+	\newpage
+	\section{為什麼要用\LaTeX ？}
+		\LaTeX 在國際上被廣泛用於排版各大科學領域的文獻與教科書，就要歸功於下列的幾個特色與優點了！
 		\begin{itemize}
-			\item 完全免費。對，你沒看錯，所有你會用到的軟體都是完全免費。
-			\item 非常適合數學公式與各種科學圖表的排版，可以排出漂亮的報告與論文。許多學術期刊及國外的教科書都是使用\LaTeX 排版出。
-			\item 編輯檔案時不受作業系統限制，只要是打得出字的機器都能直接編輯，甚至可以用摩斯電碼傳給你朋友。
-			\item 讓你看起來很像某個資訊電神在寫程式；或是某個駭客在入侵學校系統，盜段考考卷出來洩題給同學，然後再跟你同學討錢。
-			\item 讓你的心血不容易被別人抄襲。(就算懂\LaTeX 的人也可能看不懂你的指令寫法)
+			\item \textbf{完全免費：}所有\TeX 大家族的軟體都是完全免費的，當然也包括\LaTeX 與其他實用的套件(Package)。
+			\item \textbf{數學公式間距調整：}\LaTeX 幾乎就是為了排版數學公式而生的，其內部的演算法可配合當前字型，自動調整數學公式中數字與符號間的距離；使用者也可用指令手動增加或減少間距大小。
+			\item \textbf{純文字檔案：}編輯時不受作業系統或裝置限制，只要是打得出字的機器都能直接編輯；甚至可以用摩斯電碼傳給你朋友(假設你的檔案是純英文)。
+			\item \textbf{可移植性：}
+			\item \textbf{：}讓你的心血不容易被別人抄襲。(就算懂\LaTeX 的人也可能看不懂你的指令寫法)
+			\item \textbf{一行指令打天下}：\LaTeX 內建許多指令，
+			\item \textbf{神秘性：}讓你看起來很像某個資訊電神在寫程式；或是像某個駭客在入侵學校系統盜段考考卷出來，洩題給同學之後再跟他們討錢。
+
 		\end{itemize}
-%		
+	
+	\section{為什麼\LaTeX 這麼冷門？}
+		由於\LaTeX 的運作邏輯與程式語言較為相似，加上
+		\begin{itemize}
+			\item 嵌入圖片與表格很麻煩，格式很難調。
+			\item 初始設定複雜、指令記憶難，入坑門檻高。
+			\item 
+			\item 
+		\end{itemize}
+		
+		
 	\section{\LaTeX 究竟有多強大？}{%limit scope of "column type Z" and "setminted" to this section only
 		\newcolumntype{Z}{Tp{4.5em}|>{\small\ttfamily}p{12ex}|>{\centering\arraybackslash\sffamily}p{5.05cm}|p{5.75cm}T}
 		\setminted{fontsize=\tiny, breakafter=-=\}, breakaftersymbolpre=, tabsize=2}
-		說到\LaTeX ，第一個想到的當然是它在數學公式與科學圖表優秀的排版啦！
+		說了這麼多，就讓我們實際看看\LaTeX 在數學公式與科學圖表優秀的排版能力吧！
 
 		\begin{table}[H]
 			\centering
@@ -405,7 +413,7 @@
 			\label{tab:Scientific Applications of LaTeX}
 		\end{table}
 		\pagebreak
-		但是這麼強大的軟體，不拿來做一些趣味用途真是太可惜了！其實\LaTeX 中也有許多意想不到的套件，讓我們可以排版出科學用途之外的東西。以下是幾個貓貓覺得有趣的例子：
+		但是這麼強大的軟體，不拿來做一些趣味應用真是太可惜了！其實\LaTeX 中也包含許多意想不到的套件，讓我們可以排版出科學用途之外的東西。以下是幾個貓貓覺得有趣的例子：
 		\begin{table}[H]
 			\centering
 			\rowcolors{2}{gray!20}{gray!10}
@@ -586,14 +594,6 @@
 			\label{tab:Fun Applications of LaTeX}	
 		\end{table}
 		}
-	\section{\LaTeX 的優缺點？}
-		缺點：
-		\begin{itemize}
-			\item 嵌入圖片與表格很麻煩，格式很難調。
-			\item 初始設定複雜、指令記憶難，入坑門檻高。
-			\item 
-			\item 
-		\end{itemize}
 
 	\section{\LaTeX 與其他軟體的比較}
 		首先，當然是與市面上最普遍的文書處理軟體Word來個大比拚啦！
