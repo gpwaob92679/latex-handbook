@@ -1,8 +1,10 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{indiv}[2021/06/14 v1.0 Custom LaTeX Class for latex-handbook by gpwaob92679]
+
 % Document Settings
-\documentclass[12pt, a4paper, oneside]{extbook}
+\LoadClass[class=extbook, crop=false, multi=true, float=true, a4paper, 12pt, oneside]{standalone}
 %\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-
 \usepackage[
 	top=2cm,
 	bottom=2cm,
@@ -23,9 +25,10 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 
-% Images
+% graphicx
 \usepackage{graphicx}
-\graphicspath{{../images/}{../images/part1/ch1}}
+\graphicspath{{\StrSubstitute{\currfileabsdir\currfilebase}{\string s\string r\string c}{images}}}
+
 
 \newcommand{\img}[1]{ % for inline image insertion
 	\ %
@@ -47,7 +50,6 @@
 		]{#1}%
 	}%
 }
-
 
 % Paragraph Style
 \usepackage{indentfirst}
@@ -251,54 +253,3 @@
 % UNUSED
 %\usepackage{moreenum}
 
-
-\begin{document}
-	\makebarother % fix: texmate using "|" for chess envs
-
-	\begin{titlepage}
-		\begin{center}
-			\sffamily
-			
-%			\vspace*{1cm}
-%			temp title design
-			\begin{tcolorbox}[
-				halign=flush center,
-				drop fuzzy shadow,
-				arc=2pt,
-				height=4cm,
-				valign=center]
-				\fontsize{36pt}{\baselineskip}\selectfont \LaTeX\ 祕笈
-			\end{tcolorbox}
-			
-			\vspace*{1cm}
-			{\fontsize{24pt}{2\baselineskip}\selectfont%
-				武陵高中資訊讀書會 \\
-				武陵高中第十屆科學班 \\[\baselineskip]
-				GPwaob\_92679}
-			 
-			
-			\vfill
-			
-%			temp image
-			\includegraphics[width=0.8\textwidth]{readme/science.png}
-		
-		
-		\end{center}
-	\end{titlepage}
-
-	\tableofcontents
-
-	\part{前言}
-	\chapter*{作者介紹}
-	\addcontentsline{toc}{chapter}{作者介紹}
-	\chapter*{推薦序}
-	\addcontentsline{toc}{chapter}{推薦序}  
-	
-	\import{part1/}{ch1.tex}
-	\import{part1/}{ch2.tex}
-	
-	
-	\part{\LaTeX 入門}
-	\import{part2/}{ch1.tex}
-
-\end{document}
