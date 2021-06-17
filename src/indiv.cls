@@ -12,7 +12,7 @@
 	right=2cm,
 	headheight=17pt,
 	includehead, includefoot,
-	footskip=50pt
+	footskip=1.5cm
 ]{geometry} 
 
 % Multi-file support
@@ -30,7 +30,7 @@
 \graphicspath{{\StrSubstitute{\currfileabsdir\currfilebase}{\string s\string r\string c}{images}}}
 
 
-\newcommand{\img}[1]{ % for inline image insertion
+\newcommand{\inlineimg}[1]{% for inline image insertion
 	\ %
 	\raisebox{-0.1\baselineskip}{%
 		\includegraphics[
@@ -42,13 +42,20 @@
 	\ %
 }
 
-\newcommand{\tabimg}[1]{ % for in-tabular image insertion
+\newcommand{\tabimg}[1]{% for in-tabular image insertion
 	\raisebox{-0.3ex}{%
 		\includegraphics[
 		height=1.2em,
 		keepaspectratio,
 		]{#1}%
 	}%
+}
+
+\newcommand{\mpimg}[3][0pt]{% for side-by-side images using minipage
+	\begin{minipage}[t]{#2\textwidth}
+		\vspace{#1}
+		\includegraphics[width=\linewidth]{#3}
+	\end{minipage}
 }
 
 % Paragraph Style
@@ -86,15 +93,16 @@
 \usepackage{float}
 \usepackage[justification=centering, labelfont=sf, textfont=sf]{caption}
 
+\newcommand{\uptri}{\fontspec{Noto Sans CJK TC}▲\ }
 
-\renewcommand{\figurename}{圖}
+\renewcommand{\figurename}{\uptri 圖}
 
 \usepackage{array}
 \usepackage{tabularx}
 \usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{diagbox}
-\renewcommand{\tablename}{表}
+\renewcommand{\tablename}{\uptri 表}
 
 \setlength{\arrayrulewidth}{1pt}
 \arrayrulecolor{black}
@@ -204,7 +212,7 @@
 }
 \fancypagestyle{fancy}{
 	\renewcommand{\headrulewidth}{2pt}
-	\renewcommand{\footrulewidth}{2pt}
+	\renewcommand{\footrulewidth}{0pt}
 	\fancyhf{}
 	\rhead{\ttfamily\thepage}
 	\lhead{\leftmark}
