@@ -27,14 +27,15 @@ class TexstudioStyle(Style):
         Comment:                   "#408080",
         Comment.Preproc:           "noitalic #BC7A00",
 
-        Keyword.Ampersand: "#0055ff",
-        Keyword.Command:            "#800000",
+        Keyword.Ampersand:         "#0055ff",
+        Keyword.Command:           "#800000",
         Keyword.Env:               "bold #0095FF",
         Keyword.EnvName:           "bold #000080",
         Keyword.StructText:        "bold",
-        Keyword.Math: "#808000",
+        Keyword.MathDelim:         "#509600",
+        Keyword.MathKeyword:       "#808000",
         Keyword.Option:            "#7D9029",
-        
+
         Number: "#008000",
 
         Error:                     "border:#FF0000"

@@ -347,8 +347,8 @@ class TexLexer(RegexLexer):
             (r'[^\\$%&_^{}]+', Generic.Generic),
         ],
         'root': [
-            (r'(\\\[)|(\$\$)', Keyword.Math, 'displaymath'),
-            (r'(\\\()|(\$)', Keyword.Math, 'inlinemath'),
+            (r'(\\\[)|(\$\$)', Keyword.MathDelim, 'displaymath'),
+            (r'(\\\()|(\$)', Keyword.MathDelim, 'inlinemath'),
             (r'\\begin\{', Keyword.Env, 'env'),
             (r'\\end\{', Keyword.Env, 'env'),
             (r'\\((part)|(chapter)|((sub){0,2}section)|((sub)?(paragraph)))\*?', Keyword.Env, 'structure'),
@@ -356,17 +356,17 @@ class TexLexer(RegexLexer):
             include('general'),
         ],
         'math': [ # set everything in math mode to style Number
-            (r'\\([a-zA-Z0-9]+|.)', Number),
-            (r'[-=!+*/()\[\]_^{}]', Number),
+            (r'\\([a-zA-Z]+)', Keyword.MathKeyword),
+            (r'[a-zA-Z-=!+*/()\[\]_^{}0-9]', Number),
             (r'[^=!+*/()\[\]\\$%&_^{}0-9-]+', Number),
 #            include('general'),
         ],
         'inlinemath': [
-            (r'(\\\))|(\$)', Keyword.Math, '#pop'),
+            (r'(\\\))|(\$)', Keyword.MathDelim, '#pop'),
             include('math'),
         ],
         'displaymath': [
-            (r'(\\\])|(\$\$)', Keyword.Math, '#pop'),
+            (r'(\\\])|(\$\$)', Keyword.MathDelim, '#pop'),
             include('math'),
         ],
         'command': [

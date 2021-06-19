@@ -41,15 +41,24 @@
 	\section{\LaTeX 究竟有多強大？}{%limit scope of "column type Z" and "setminted" to this section only
 		\newcolumntype{Z}{Tp{4.5em}|>{\small\ttfamily}p{12ex}|>{\centering\arraybackslash\sffamily}p{5.05cm}|p{5.75cm}T}
 		\setminted{fontsize=\tiny, breakafter=-=\}, breakaftersymbolpre=, tabsize=2}
-		說了這麼多，就讓我們實際看看\LaTeX 在數學公式與科學圖表優秀的排版能力吧！
 		
+		說了這麼多，就讓我們實際看看\LaTeX 在數學公式與科學圖表優秀的排版能力吧！
 		\begin{table}[H]
 			\centering
 			\rowcolors{2}{gray!20}{gray!10}
 			\begin{tabular}{Z}
 				\Thline
 				\rowcolor{cyan!40} \thead{應用} & \thead{\textrm{套件}} & \thead{\textrm{範例}} & \thead{原始碼}(部分省略) \\ \hline
-				數學公式 & amsmath &  & \\ \hline
+				數學公式 & amsmath &
+				\begin{tabmp}
+					\centering
+					$ \displaystyle \hat{f}(\xi) = \int_{-\infty}^{\infty} f(x)\, e^{-2\pi ix\xi}\, dx $ 
+				\end{tabmp} &
+				\begin{tabmp}[-0.2]
+					\begin{minted}{LaTeX}
+\[ \hat{f}(\xi) = \int_{-\infty}^{\infty} f(x) e^{-2\pi ix\xi} dx \]
+					\end{minted}
+				\end{tabmp} \\ \hline
 				化學\newline 結構式 & chemfig &
 				\begin{tabmp}
 					\centering
@@ -88,7 +97,7 @@
 				\begin{tabmp}[-0.2]
 					\begin{minted}{LaTeX}
 \begin{circuitikz}
-	% 繪製彩色標示方塊與註解
+	% 繪製彩色方塊與文字標示
 	\fill[blue!15!white] (-1, 0.8) rectangle (0.5,-0.8);
 	\fill[orange!20!white] (-1, -1.2) rectangle (0.5, -2.8);
 	\node[draw, color=blue] at (1.7, 0){\textbf{P-channel}};
@@ -112,7 +121,7 @@
 			\label{tab:Scientific Applications of LaTeX}
 		\end{table}
 		\newpage
-		但是這麼強大的軟體，不拿來做一些趣味應用真是太可惜了！其實\LaTeX 中也包含許多意想不到的套件，讓我們可以排版出科學用途之外的東西。以下是幾個貓貓覺得有趣的例子：
+		但是這麼強大的軟體，不拿來做一些趣味應用真是太可惜了！其實\LaTeX 中也包含許多意想不到的套件，讓我們可以排版出科學用途之外的東西。以下是幾個有趣的例子：
 		\begin{table}[H]
 			\centering
 			\rowcolors{2}{gray!20}{gray!10}
