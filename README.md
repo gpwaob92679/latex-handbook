@@ -44,9 +44,14 @@
 
 #### Part I 前言
 
-##### 第一章 LaTeX簡介
+- 第1章 LaTeX簡介
+- 第2章 初始環境設定
 
-#### Part II LaTeX入門
+#### Part II LaTeX入門篇
+
+#### Part III LaTeX進階篇
+
+#### Part IV LaTeX專精篇
 
 --待續 TO BE CONTINUED--
 
