@@ -117,7 +117,7 @@
 					\end{minted}
 				\end{tabmp} \\ \Thline
 			\end{tabular}
-			\caption{\LaTeX 的科學應用}
+			\caption{\LaTeX 的科學應用範例}
 			\label{tab:Scientific Applications of LaTeX}
 		\end{table}
 		\newpage
@@ -298,24 +298,26 @@
 				\end{tabmp}
 				\\ \Thline
 			\end{tabular}
-			\caption{\LaTeX 的趣味應用}
+			\caption{\LaTeX 的趣味應用範例}
 			\label{tab:Fun Applications of LaTeX}	
 		\end{table}
 	}
-	
+
 	\section{\LaTeX 與其他軟體的比較}
 	首先，當然是與市面上最普遍的文書處理軟體Word來個大比拚啦！
 	\begin{table}[H]
 		\centering
+		\OSfamily
 		\rowcolors{2}{gray!20}{gray!10}
-		\begin{tabularx}{0.8\textwidth}{TX|XT}
+		\begin{tabularx}{\textwidth}{T>{\centering\arraybackslash}p{0.25\textwidth}TC|CT}
 			\Thline
-			\rowcolor{cyan!50} \thead{\LaTeX \ LaTeX} &
-			\thead{\tabimg{ms_word.png} Microsoft Word} \\ \hline
-			aaa & aaa \\ \hline
-			bbb & bbb \\ \hline
-			ccc & ccc \\ \hline
-			ddd & ddd \\ \Thline
+			\rowcolor{cyan!50} \diagbox[innerwidth=\linewidth, linewidth=2\arrayrulewidth, font=\large]{屬性}{軟體} &
+			\thead{\LaTeX \ LaTeX} &
+			\thead{\tabimg{ms_word.png} Microsoft Word} \\ \Thline
+			價錢 & 免費 & 付費 \\ \hline
+			& & \\ \hline
+			& & \\ \hline
+			& & \\ \Thline
 		\end{tabularx}
 		
 		% insert microsoft word meme
@@ -323,14 +325,15 @@
 		\caption{\LaTeX\ vs. Microsoft Word}
 		\label{tab:LaTeX vs MSWord}
 	\end{table}
+	\newpage
 	再者，既然說\LaTeX 比較像是一種程式語言，那當然要拿來與時下當紅的C++與Python來比較啊！
-	\begin{table}[h]
+	\begin{table}[H]
 		\centering
 		\rowcolors{2}{gray!20}{gray!10}
 		\OSfamily
 		\begin{tabularx}{\textwidth}{Tp{0.26\textwidth}TX|X|XT}
 			\Thline
-			\rowcolor{cyan!50} \diagbox[innerwidth=0.26\textwidth, linewidth=2\arrayrulewidth]{使用軟體/屬性}{語言} &
+			\rowcolor{cyan!50} \diagbox[innerwidth=\linewidth, linewidth=2\arrayrulewidth]{使用軟體/屬性}{語言} &
 			\thead{\LaTeX \ \ LaTeX} &
 			\thead{\tabimg{cpp_logo.png}\ \ C++} &
 			\thead{\tabimg{python-logo.png}\ \ Python} \\ \Thline
@@ -358,16 +361,14 @@
 				\item \hologo{LuaLaTeX}
 			\end{tabitemize} & 
 			\begin{tabitemize}
-				\item {G++ \tabimg{GNU_Compiler_Collection_logo}}
+				\item {G++ \tabimg{GNU_Compiler_Collection_logo.png}}
 				\item {MSVC\footnotemark[2] \tabimg{Visual_Studio_Icon_2019.png}}
 			\end{tabitemize} &
 			\begin{tabitemize}
-				\item CPython
-				\item PyPy
+				\item {CPython \tabimg{cython_icon.png}}
+				\item PyPy \tabimg{pypy-logo.png}
 			\end{tabitemize} \\ \hline
-			輸出(Output) & .pdf \tabimg{PDF_file_icon.png} & {.exe \tabimg{exe_icon.png}} & N/A \\ \hline
-			&  & & \\
-			\Thline
+			輸出(Output) & .pdf \ \tabimg{PDF_file_icon.png} & {.exe \tabimg{windows-exe-icon-1.jpg}} & {(\ .exe \tabimg{windows-exe-icon-1.jpg}\ )} \\ \Thline
 		\end{tabularx}
 		\caption{\LaTeX\ vs\ C++\ vs\ Python}
 		\label{tab:LaTeX vs C++ vs Python}
