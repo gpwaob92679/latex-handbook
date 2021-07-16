@@ -35,12 +35,13 @@
 		\mpimg{0.3}{arial-times-new-roman-i-use-latex-btw-46701863.png}
 		\hspace{1cm}
 		\mpimg{0.4}{s2uk3yloola21.jpg}
+		\caption{兩張關於\LaTeX 的梗圖}
 	\end{figure}
 	
 	\newpage
 	\section{\LaTeX 究竟有多強大？}{%limit scope of "column type Z" and "setminted" to this section only
 		\newcolumntype{Z}{Tp{4.5em}|>{\small\ttfamily}p{12ex}|>{\centering\arraybackslash\sffamily}p{5.05cm}|p{5.75cm}T}
-		\setminted{fontsize=\tiny, breakafter=-=\}, breakaftersymbolpre=, tabsize=2}
+		\setminted{fontsize=\tiny, breakafter=-=, breakbefore=\\, tabsize=2}
 		
 		說了這麼多，就讓我們實際看看\LaTeX 在數學公式與科學圖表優秀的排版能力吧！
 		\begin{table}[H]
@@ -120,7 +121,7 @@
 			\caption{\LaTeX 的科學應用範例}
 			\label{tab:Scientific Applications of LaTeX}
 		\end{table}
-		\newpage
+		\pagebreak
 		但是這麼強大的軟體，不拿來做一些趣味應用真是太可惜了！其實\LaTeX 中也包含許多意想不到的套件，讓我們可以排版出科學用途之外的東西。以下是幾個有趣的例子：
 		\begin{table}[H]
 			\centering
@@ -220,17 +221,17 @@
 				\end{tabmp} &
 				\begin{tabmp}[-0.2]
 					\begin{minted}{LaTeX}
-	\begin{sudoku-block}
-		|8| | | | | | | | |.
-		| | |3|6| | | | | |.
-		| |7| | |9| |2| | |.
-		| |5| | | |7| | | |.
-		| | | | |4|5|7| | |.
-		| | | |1| | | |3| |.
-		| | |1| | | | |6|8|.
-		| | |8|5| | | |1| |.
-		| |9| | | | |4| | |.
-	\end{sudoku-block}
+\begin{sudoku-block}
+	|8| | | | | | | | |.
+	| | |3|6| | | | | |.
+	| |7| | |9| |2| | |.
+	| |5| | | |7| | | |.
+	| | | | |4|5|7| | |.
+	| | | |1| | | |3| |.
+	| | |1| | | | |6|8|.
+	| | |8|5| | | |1| |.
+	| |9| | | | |4| | |.
+\end{sudoku-block}
 					\end{minted}
 				\end{tabmp} \\ \hline
 			\end{tabular}
@@ -245,7 +246,31 @@
 			\begin{tabular}{Z}
 				\hline
 				五線譜 & musixtex &
-				&
+				\begin{tabmp}[0]
+					\begin{music}
+						\smallmusicsize
+						\nostartrule
+						\nobarnumbers
+						\generalmeter{\meterfrac44} % 拍號: 4/4拍
+						\generalsignature{+3} % 調號: 3個升
+						\startextract % 開始記譜
+						\NOtes\qa{l}\en\Notes\ibl0n{-1}\qb0{o}\itieu0n\tqb0n\ibl0n2\ttie0\qb0{n}\itieu0o\qb0{o}\ttie0\qb0{o}\itieu0o\tqb0p\ttie0\en
+						\endextract % 結束記譜
+					\end{music}
+				\end{tabmp} &
+				\begin{tabmp}[-0.2]
+					\begin{minted}{LaTeX}
+\begin{music}
+	\nostartrule
+	\nobarnumbers
+	\generalmeter{\meterfrac44} % 拍號: 4/4拍
+	\generalsignature{+3} % 調號: 3個升
+	\startextract % 開始記譜
+	\NOtes\qa{l}\en\Notes\ibl0n{-1}\qb0{o}\itieu0n\tqb0n\ibl0n2\ttie0\qb0{n}\itieu0o\qb0{o}\ttie0\qb0{o}\itieu0o\tqb0p\ttie0\en
+	\endextract % 結束記譜
+\end{music}
+					\end{minted}
+				\end{tabmp}
 				\\ \hline
 				迷宮 & labyrinth &
 				\begin{tabmp}[0]
@@ -295,6 +320,36 @@
 	\autosolution[font=\color{red}](8,0)(10,19){u}
 \end{labyrinth}
 					\end{minted}
+				\end{tabmp} \\ \hline
+				填字遊戲 & crossword\newline (cwpuzzle) &
+				\begin{tabmp}
+					\centering
+					\begin{Puzzle}{5}{5}
+						|[1]C|O |V |I |D |.
+						|[2]W|O |R |D |{}|.
+						|[3]L|A |T |E |X |.
+						|   S|{}|{}|{}|{}|.
+						|   H|{}|{}|{}|{}|.
+					\end{Puzzle}\\
+					\vspace{1mm}
+					\scriptsize\raggedright
+					\textbf{橫向}\\
+					\ \ 1  一種2019年開始大流行的疾病\\
+					\ \ 2  一個排版軟體\\
+					\ \ 3  一套排版引擎\\
+					\textbf{縱向}\\
+					\ \ 1  作者讀的高中
+				\end{tabmp} &
+				\begin{tabmp}[-0.2]
+					\begin{minted}{LaTeX}
+\begin{Puzzle}{5}{5}
+	|[1]C|O |V |I |D |.
+	|[2]W|O |R |D |{}|.
+	|[3]L|A |T |E |X |.
+	|   S|{}|{}|{}|{}|.
+	|   H|{}|{}|{}|{}|.
+\end{Puzzle}
+					\end{minted}
 				\end{tabmp}
 				\\ \Thline
 			\end{tabular}
@@ -302,31 +357,47 @@
 			\label{tab:Fun Applications of LaTeX}	
 		\end{table}
 	}
-
+	\pagebreak
 	\section{\LaTeX 與其他軟體的比較}
-	首先，當然是與市面上最普遍的文書處理軟體Word來個大比拚啦！
+	看了\LaTeX 這麼精采的表現，此時的你可能有點心動，想著手學習這套炫炮的程式了。但看到密密麻麻的程式碼與指令，你又猶豫了一下，覺得自己從小到大用Word用得好好的，現在幹嘛花一堆時間折磨自己。為了更清楚\LaTeX 與Word的差別，讓我們看看下表：
 	\begin{table}[H]
 		\centering
 		\OSfamily
 		\rowcolors{2}{gray!20}{gray!10}
-		\begin{tabularx}{\textwidth}{T>{\centering\arraybackslash}p{0.25\textwidth}TC|CT}
+		\begin{tabularx}{\textwidth}{T>{\centering\arraybackslash}p{0.2\textwidth}TC|CT}
 			\Thline
 			\rowcolor{cyan!50} \diagbox[innerwidth=\linewidth, linewidth=2\arrayrulewidth, font=\large]{屬性}{軟體} &
 			\thead{\LaTeX \ LaTeX} &
 			\thead{\tabimg{ms_word.png} Microsoft Word} \\ \Thline
-			價錢 & 免費 & 付費 \\ \hline
-			& & \\ \hline
-			& & \\ \hline
-			& & \\ \Thline
+			價錢 & \textbf{免費} & 付費 \\ \hline
+			難易度 & 難 & \textbf{易} \\ \hline
+			專業度 & \textbf{高} & 低 \\ \hline
+			多人合作 & 難 & \textbf{易} \\ \hline
+			處理圖片 & 操作複雜，\textbf{位置穩定} & \textbf{操作簡單}，位置易亂跑 \\ \hline
+			編輯模式 & 需將原始碼\textbf{編譯}成文件 & \textbf{WYSIWYG}\footnotemark[1] \\ \hline
+			適合用於 & \textbf{大型、複雜}的文件 & \textbf{小型、簡單}的文件 \\ \Thline
 		\end{tabularx}
-		
-		% insert microsoft word meme
-		% 程式碼 vs WYSIWYG
 		\caption{\LaTeX\ vs. Microsoft Word}
-		\label{tab:LaTeX vs MSWord}
+		\label{tab:LaTeX vs Word}
 	\end{table}
-	\newpage
-	再者，既然說\LaTeX 比較像是一種程式語言，那當然要拿來與時下當紅的C++與Python來比較啊！
+	\footnotetext[1]{What You See Is What You Get, 所見即所得}
+	接著我們來看一張曲線圖。由圖中的兩條曲線可明顯得知，當我們在處理簡單的文件時，用Word確實比\LaTeX 省時；但隨著文件的大小和複雜度提升，使用\LaTeX 反而比 Word 來得輕鬆。	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.4\linewidth]{word_vs_latex_curve.png}
+		\caption{利用 \LaTeX\ 與 Word 處理不同複雜度的文件時，分別所需的時間與精力}
+		\label{fig:LaTeX vs. Word curve}
+	\end{figure}
+	\pagebreak
+	也正因為兩套軟體的性質迥異，許多梗圖就因此誕生...
+	\begin{figure}[H]
+		\centering
+		\mpimg{0.4}{EXtjfNvUMAIyQ_G.jpg}
+		\hspace{0.5cm}
+		\mpimg{0.45}{R8ShZojm9a3L-Bq5jOFXfRzGLHa3H_r5o7-zVYLi3Wo.png}
+		\caption{更多關於\LaTeX 與Word的梗圖}
+	\end{figure}
+	最後，既然說\LaTeX 與程式語言的運作邏輯比較相似，那就來與時下當紅的C++與Python比較吧！
 	\begin{table}[H]
 		\centering
 		\rowcolors{2}{gray!20}{gray!10}
@@ -338,7 +409,7 @@
 			\thead{\tabimg{cpp_logo.png}\ \ C++} &
 			\thead{\tabimg{python-logo.png}\ \ Python} \\ \Thline
 			編輯器(Editor)\ / \newline
-			整合開發環境(IDE\footnotemark[1]) &
+			整合開發環境(IDE\footnotemark[2]) &
 			\begin{tabitemize}
 				\item {Texmaker \tabimg{texmaker_logo.png}}
 				\item {TeXstudio \tabimg{Texstudio_Logo.png}}
@@ -362,7 +433,7 @@
 			\end{tabitemize} & 
 			\begin{tabitemize}
 				\item {G++ \tabimg{GNU_Compiler_Collection_logo.png}}
-				\item {MSVC\footnotemark[2] \tabimg{Visual_Studio_Icon_2019.png}}
+				\item {MSVC\footnotemark[3] \tabimg{Visual_Studio_Icon_2019.png}}
 			\end{tabitemize} &
 			\begin{tabitemize}
 				\item {CPython \tabimg{cython_icon.png}}
@@ -370,9 +441,9 @@
 			\end{tabitemize} \\ \hline
 			輸出(Output) & .pdf \ \tabimg{PDF_file_icon.png} & {.exe \tabimg{windows-exe-icon-1.jpg}} & {(\ .exe \tabimg{windows-exe-icon-1.jpg}\ )} \\ \Thline
 		\end{tabularx}
-		\caption{\LaTeX\ vs\ C++\ vs\ Python}
+		\caption{\LaTeX\ vs C++ vs Python}
 		\label{tab:LaTeX vs C++ vs Python}
 	\end{table}
-	\footnotetext[1]{Integrated Development Environment}
-	\footnotetext[2]{Microsoft Visual C++}
+	\footnotetext[2]{Integrated Development Environment, 整合開發環境}
+	\footnotetext[3]{Microsoft Visual C++}
 \end{document}

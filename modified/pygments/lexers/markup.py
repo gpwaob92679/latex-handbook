@@ -352,7 +352,7 @@ class TexLexer(RegexLexer):
             (r'\\begin\{', Keyword.Env, 'env'),
             (r'\\end\{', Keyword.Env, 'env'),
             (r'\\((part)|(chapter)|((sub){0,2}section)|((sub)?(paragraph)))\*?', Keyword.Env, 'structure'),
-            (r'\\.*?(?=\[|\{|\n|\s|\}|\]|,)', Keyword.Command, 'command'),
+            (r'\\.*?(?=\[|\{|\n|\s|\}|\]|,|[0-9])', Keyword.Command, 'command'),
             include('general'),
         ],
         'math': [ # set everything in math mode to style Number

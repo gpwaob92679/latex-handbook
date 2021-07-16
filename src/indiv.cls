@@ -12,7 +12,7 @@
 	right=2cm,
 	headheight=17pt,
 	includehead, includefoot,
-	footskip=1.5cm
+	footskip=0.5cm
 ]{geometry} 
 
 % Multi-file support
@@ -158,7 +158,9 @@
 \setminted{
 	breaklines,
 	tabsize=4,
-	style=texstudio
+	style=texstudio,
+	breakaftersymbolpre=,
+	breakbeforesymbolpre=,
 }
 
 % tcolorbox
@@ -228,11 +230,13 @@
 \usepackage{tikz}
 \usepackage[american]{circuitikz}
 
-% chess, chinese chess, sudoku, labyrinth
+% Fun Packages
 \usepackage{texmate}
 \usepackage{cchess}
 \usepackage{sudoku}
 \usepackage{labyrinth}
+\usepackage{musixtex}
+\usepackage{cwpuzzle}
 
 %zhnumber
 \usepackage{zhnumber}
