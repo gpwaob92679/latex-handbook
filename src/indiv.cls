@@ -91,7 +91,8 @@
 % Floats, Figures, Tables, ...
 \usepackage[table]{xcolor}
 \usepackage{float}
-\usepackage[justification=centering, labelfont=sf, textfont=sf]{caption}
+\usepackage{caption}
+\captionsetup{format=hang, justification=centering, labelfont=sf, textfont=sf, skip=0.6\baselineskip, belowskip=-0.7\baselineskip}
 
 \newcommand{\uptri}{\fontspec{Noto Sans CJK TC}▲\ }
 
@@ -129,6 +130,13 @@
 	nosep
 }
 
+\newlist{extra}{enumerate}{100}
+\setlist[extra]{%
+	label=\fontspec{標楷體}※,
+	labelindent=0pt,
+	leftmargin=*,
+	nosep
+}
 
 % Enum and Item in tabular envs (to avoid weird spacing issues)
 \newenvironment{tabitemize}{%
@@ -256,6 +264,9 @@
 
 % TOC
 \renewcommand{\contentsname}{目錄 Table Of Contents}
+
+% Macros
+\newcommand{\refmark}{\noindent{\fontspec{標楷體}※}}
 
 
 % Debug
