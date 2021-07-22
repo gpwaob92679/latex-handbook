@@ -3,6 +3,7 @@
 \setcounter{chapter}{1}
 
 \begin{document}
+	\newcolumntype{Z}{T >{\ttfamily\large}p{2.5em} p{7.3cm} p{6.5cm} T}
 	\chapter{初始環境設定}
 	\section{\LaTeX 的運作模式與編譯流程}
 	先前提到\LaTeX 是一套功能強大且複雜的排版「系統」，顧名思義可知它並非一個獨立運行的程式，而是將每個獨立的小程式串成一組「編譯鍊」(Compile Chain)，才得以支援這麼多自動化的功能。
@@ -27,9 +28,9 @@
 		\rowcolors{2}{gray!20}{gray!10}
 		\OSfamily
 		\setlength{\tabcolsep}{10pt}
-		\begin{tabular}{T >{\ttfamily\large}p{2.5em} p{7.3cm} p{6.5cm} T}
+		\begin{tabular}{Z}
 			\Thline
-			\rowcolor{cyan!40} \textrm{\textbf{\large 步驟}} & \textbf{\large 圖示} & \textbf{\large 說明} \\ \Thline
+			\rowcolor{cyan!40} \textrm{\textbf{\large 步驟}} & \textbf{\large 圖示} & \textbf{\large 說明}\\\Thline
 			1. &
 			\begin{tabmp}[-0.2]
 				\centering
@@ -57,14 +58,61 @@
 					\item 若下面的列表為空的(或是為了保險起見)，點擊Check for updates。
 					\item 等待程式檢查更新後，點擊Update now，並更新所有可更新的套件。
 				\end{enumerate}
-			\end{tabmp}
-			\\ \Thline
+			\end{tabmp}\\\Thline
 		\end{tabular}
 		\label{tab:MiKTeX Installation}
 	\end{table}
-	
 	\section{安裝套件 \textemdash\ xeCJK}
-	
+	安裝完發行版後，每個\LaTeX 人都一定要會的就是安裝套件啦！為了讓\LaTeX 可以支援中文輸入，本書就以\texttt{xeCJK}套件作為範例。這應該也是大家必須且最常用的套件之一，所以現在就馬上裝起來吧！
+	\begin{table}[H]
+		\centering
+		\rowcolors{2}{gray!20}{gray!10}
+		\OSfamily
+		\setlength{\tabcolsep}{10pt}
+		\begin{tabular}{Z}
+			\Thline
+			\rowcolor{cyan!40} \textrm{\textbf{\large 步驟}} & \textbf{\large 圖示} & \textbf{\large 說明}\\\Thline
+			1. &
+			\begin{tabmp}[-0.2]
+				\centering
+				\includegraphics[width=\linewidth]{xecjk-install-1.png}
+			\end{tabmp} &
+			\begin{tabmp}
+				\begin{enumerate}[label=\texttt{(\arabic*)}, nosep, left=0pt, labelsep=0.5ex]
+					\item 開啟MiKTeX Console，並點擊左側的Updates。
+					\item 在畫面中間的搜尋欄內輸入"xeCJK"後，按下\Enter。
+				\end{enumerate}
+			\end{tabmp}\\
+			2. &
+			\begin{tabmp}[-0.2]
+				\centering
+				\includegraphics[width=\linewidth]{xecjk-install-2.png}
+			\end{tabmp} &
+			\begin{tabmp}
+				\begin{enumerate}[label=\texttt{(\arabic*)}, nosep, left=0pt, labelsep=0.5ex]
+					\item 點選視窗中第一列的"xecjk"。
+					\item 點擊搜尋欄左側的 \raisebox{-0.1ex}{\inlineimg{install-icon.png}} 圖示\newline(Install)，進行套件安裝。
+				\end{enumerate}
+			\end{tabmp}\\
+			3. &
+			\begin{tabmp}[-0.3]
+				\centering
+				\includegraphics[width=\linewidth]{xecjk-install-3.png}
+			\end{tabmp} &
+			\begin{tabmp}
+				等待套件安裝完畢後，點擊視窗右下角的Close。
+			\end{tabmp}\\\Thline
+		\end{tabular}
+		\label{tab: MiKTeX Installation}
+	\end{table}
+	\begin{extra}
+		\item 偷偷跟你說，其實不一定每次安裝套件都要這麼麻煩。假如你像我一樣很懶，日後直接在文件裡面用了 \mintinline{LaTeX}{\usepackage{還沒安裝的套件}} ，你的編譯器在編譯時應該會直接問你要不要安裝該套件，到時候直接按Install就解決了，呵呵。
+	\end{extra}
+%	\begin{figure}[H]
+%		\centering
+%		\includegraphics[width=0.4\linewidth]{random-install-popup.png}
+%		\label{fig: Random Install Popup}
+%	\end{figure}
 	\section{安裝\LaTeX 編輯器 \textemdash\ Texmaker}
 	
 	\section{設定Texmaker}
