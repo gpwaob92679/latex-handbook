@@ -20,6 +20,10 @@
 \usepackage{standalone}
 \usepackage{import}
 
+%MISC.
+\usepackage{zhnumber}
+\usepackage{keystroke}
+
 % AMS Packages
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -255,8 +259,7 @@
 \usepackage{musixtex}
 \usepackage{cwpuzzle}
 
-%zhnumber
-\usepackage{zhnumber}
+
 
 % Counters
 \usepackage{chngcntr}
