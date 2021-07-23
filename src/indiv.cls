@@ -82,7 +82,7 @@
 %\setmainfont{Times New Roman}
 \setsansfont{Aller}
 \setmonofont{Consolas}
-\newfontfamily{\OSfamily}{Open Sans}
+\newfontfamily{\OSfamily}{Open Sans}[Ligatures=TeX]
 
 % For TeX-related logos
 \usepackage{hologo}
