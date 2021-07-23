@@ -42,16 +42,16 @@
 
 ### 目錄 Table of Contents
 
-#### Part I 前言
+#### Part I 前言 Preface
 
 - 第1章 LaTeX簡介
 - 第2章 初始環境設定
 
-#### Part II LaTeX入門篇
+#### Part II LaTeX入門篇 LaTeX for Beginners
 
-#### Part III LaTeX進階篇
+#### Part III LaTeX進階篇 LaTeX for Intermediates
 
-#### Part IV LaTeX專精篇
+#### Part IV LaTeX專精篇 LaTeX for Experts
 
 --待續 TO BE CONTINUED--
 
