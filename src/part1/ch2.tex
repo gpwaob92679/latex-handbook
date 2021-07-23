@@ -116,10 +116,10 @@
 	\section{安裝\LaTeX 編輯器 \textemdash\ Texmaker}
 	雖然先前提到\LaTeX 的相容性極高，在任何能打出字的地方都可以直接編輯(包括Windows內建最陽春的記事本)，但為了我們的方便，選擇一個專為\LaTeX 設計的文字編輯器還是可以省下許多麻煩，例如自動完成指令、快速建表、快速插入圖片、格式設定快速鍵，還有最重要的是不用每次都要手動到終端機下編譯指令。
 	
-	\LaTeX 的文字編輯器有分為本機程式和線上網站兩種。首先，貓貓強烈不推薦線上編輯器。雖然它們可能會提供多人同時編輯的服務，但大多必須犧牲套件的選擇多元性，而且很多「進階」的功能還要付費，根本就划不來。\inlineimg{ologo_square_colour_light_bg.png}\href{https://www.overleaf.com/}{Overleaf} 就是最有名的線上編輯器之一。雖然它的編輯器不好用，但我覺得它的教學文很值得參考。貓貓當年也是在讀書會學長的推薦下，看它的 \href{https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes}{Learn \LaTeX in 30 minutes
+	\LaTeX 的文字編輯器有分為本機程式和線上網站兩種。首先，貓貓強烈不推薦線上編輯器。雖然它們可能會提供多人同時編輯的服務，但大多必須犧牲套件的選擇多元性，而且很多「進階」的功	能還要付費，根本就划不來。\inlineimg{ologo_square_colour_light_bg.png}\href{https://www.overleaf.com/}{Overleaf} 就是最有名的線上編輯器之一。雖然它的編輯器不好用，但我覺得它的教學文很值得參考。貓貓當年也是在讀書會學長的推薦下，看它的 \href{https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes}{Learn \LaTeX in 30 minutes
 	}學會\LaTeX 的基礎。
 	
-	就本機程式的選擇而言，其實我們之前安裝的\hologo{MiKTeX}就有附加一個名為TeXworks的編輯器了，但大部分的人都覺得它功能太陽春、不太實用，因此目前網上主流的選擇包括Texmaker、TeXstudio、WinEdt等等。其實它們的功能都差不多，可是貓貓感覺大家比較喜歡Texmaker，大部分的教學文也都是用它作為範例。我平常都是用TeXstudio啦，純粹只是因為我覺得它在我的電腦上明顯比較好看、設定比較合我胃口而已。
+	就本機程式的選擇而言，其實我們之前安裝的\hologo{MiKTeX}就有附加一個名為TeXworks的編輯器了，但大部分的人都覺得它功能太陽春、不太實用，因此目前網上主流的選擇包括\href{https://www.xm1math.net/texmaker/}{Texmaker}、\href{https://www.texstudio.org/}{TeXstudio}、\href{https://www.winedt.com/}{WinEdt}等等。其實它們的功能都差不多，可是貓貓感覺大家比較喜歡Texmaker，大部分的教學文也都是用它作為範例。我平常都是用TeXstudio啦，純粹只是因為我覺得它在我的電腦上明顯比較好看、設定比較合我胃口而已。
 	
 	順道一提，Texmaker有支援繁體中文，但TeXstudio目前只有支援簡體中文，所以很討厭簡體字的我把所有東西都調成英文。但考慮大家可能無法接受全英文的介面，本書還是選擇用Texmaker作為示範，畢竟最多人用的東西應該不會出什麼大問題才對(希望啦)。
 	
@@ -134,5 +134,44 @@
 	\end{figure}
 	\pagebreak
 	\section{設定Texmaker}
-	在此筆者使用\hologo{XeLaTeX}作為編譯引擎，因為他對多國語言的支援度相當廣泛，也是所有引擎中對中文支援最好的引擎之一。先前安裝的\texttt{xeCJK}也是為\hologo{XeLaTeX}設計的套件。
+	到此為止，大家都把要用的東西都安裝好了，最後只剩下一點點設定的步驟就完成了！
+	
+	接下來我們必須決定要用哪個編譯引擎，而目前主流的\LaTeX 編譯器 包括\hologo{pdfLaTeX}、\hologo{XeLaTeX}、\hologo{LuaLaTeX}等等。貓貓看到華語圈的大家幾乎都是用\hologo{XeLaTeX}作為編譯引擎，可想是因為比起較舊的那些編譯引擎，\hologo{XeLaTeX}對Unicode與OpenType等多國語言和字型功能的支援度較廣泛，也就意味著製作英文以外的文件就必須靠它了。還記得先前安裝的\texttt{xeCJK}嗎？它也是為了配合\hologo{XeLaTeX}讀取中文輸入所設計出的套件。
+	
+	因此，我們必須叫Texmaker不要傻傻呼叫預設的\LaTeX 編譯引擎，而是用我們希望的\hologo{XeLaTeX}。
+	\begin{table}[H]
+		\centering
+		\rowcolors{2}{gray!20}{gray!10}
+		\OSfamily
+		\setlength{\tabcolsep}{10pt}
+		\begin{tabular}{Z}
+			\Thline
+			\rowcolor{cyan!40} \textrm{\textbf{\large 步驟}} & \textbf{\large 圖示} & \textbf{\large 說明}\\\Thline
+			1. &
+			\begin{tabmp}[0]
+				\centering
+				\includegraphics[width=\linewidth]{configure-texmaker-1.png}
+			\end{tabmp} &
+			\begin{tabmp}
+				\begin{enumerate}[label=\texttt{(\arabic*)}, nosep, left=0pt, labelsep=0.5ex]
+					\item 開啟Texmaker，點選上方工具列的``選項(O)"。
+					\item 點擊第一個``設定Texmaker"，叫出設定視窗。
+				\end{enumerate}
+			\end{tabmp}\\
+			2. &
+			\begin{tabmp}[-0.2]
+				\centering
+				\includegraphics[width=\linewidth]{configure-texmaker-2.png}
+			\end{tabmp} &
+			\begin{tabmp}\
+				\begin{enumerate}[label=\texttt{(\arabic*)}, nosep, left=0pt, labelsep=0.5ex]
+					\item 點選左側的``快速編譯"，進入快速編譯的視窗。
+					\item 選擇``XeLaTeX + View PDF"為快速編譯命令。
+				\end{enumerate}
+			\end{tabmp}\\\Thline
+		\end{tabular}
+		\label{tab: Configure Texmaker}
+	\end{table}
+	\vspace{4mm}
+	恭喜大家，我們漫長的前言終於到此告一段落啦！在本書的下一部份中，貓貓就要帶大家來實際上機操作，寫出你的第一份\LaTeX 文件！
 \end{document}
