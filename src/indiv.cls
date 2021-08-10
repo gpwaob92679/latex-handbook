@@ -74,7 +74,7 @@
 \setCJKfamilyfont{ming}{新細明體}
 \setCJKfamilyfont{kai}{標楷體}
 \setCJKfamilyfont{hei}{Taipei Sans TC Beta}
-\setCJKmainfont[AutoFakeBold=1.5]{標楷體}
+\setCJKmainfont[AutoFakeBold=1.5, AutoFakeSlant=0.3]{標楷體}
 \setCJKsansfont{Noto Sans CJK TC}
 %\setCJKsansfont{Taipei Sans TC Beta}
 \setCJKmonofont{Noto Sans CJK TC}
@@ -213,6 +213,88 @@
 			\fill[gray!25] (frame.south west) rectangle ([xshift=7mm]frame.north west);
 		\end{tcbclipinterior}
 	}  
+}
+
+\newtcblisting[auto counter, number within=chapter]{latexex}[1]{%
+%	listing side text,
+	breakable,
+	enhanced,
+	listing engine=minted,
+	minted language=LaTeX,
+%	minted style=colorful,
+	minted options={%
+		linenos, 
+		breaklines=true,
+		breakanywhere, 
+		breakanywheresymbolpre=,
+		numbersep=3mm,
+		tabsize=4
+	},
+	fonttitle=\sffamily,
+	drop fuzzy shadow,
+	left=8mm,
+	arc=1pt,
+	before skip=0.75\baselineskip,
+	after skip=0.75\baselineskip,
+	overlay={
+		\begin{tcbclipinterior}
+			\fill[gray!25] (frame.south west) rectangle ([xshift=8mm]frame.north west);
+		\end{tcbclipinterior}
+	\draw[dashed, line width=0.3mm] (segmentation.west) -- (segmentation.east);
+	},
+	adjusted title={範例~\thetcbcounter: #1},
+	toptitle=0.75ex,
+	bottomtitle=0.5ex,
+	lefttitle=5mm,
+	middle=3mm,
+	bottom=3mm,
+	colback=gray!5,
+	colframe=black!80,
+	coltitle=white,
+	colbacktitle=black!80,
+	compilable listing,
+	run xelatex={-interaction=nonstopmode --shell-escape --enable-8bit-chars},
+	bicolor,
+	center lower,
+	colbacklower=white,
+}
+
+\newtcblisting[use counter from=latexex]{latexex2}[1]{%
+	listing only,
+	breakable,
+	enhanced,
+	listing engine=minted,
+	minted language=LaTeX,
+%	minted style=colorful,
+	minted options={%
+		linenos, 
+		breaklines=true,
+		breakanywhere, 
+		breakanywheresymbolpre=,
+		numbersep=3mm,
+		tabsize=4
+	},
+	fonttitle=\sffamily,
+	drop fuzzy shadow,
+	left=8mm,
+	arc=1pt,
+	before skip=0.75\baselineskip,
+	after skip=0.75\baselineskip,
+	overlay={
+		\begin{tcbclipinterior}
+			\fill[gray!25] (frame.south west) rectangle ([xshift=8mm]frame.north west);
+		\end{tcbclipinterior}
+	},
+	adjusted title={範例~\thetcbcounter: #1},
+	toptitle=0.75ex,
+	bottomtitle=0.5ex,
+	lefttitle=5mm,
+	middle=3mm,
+	bottom=3mm,
+	colback=gray!5,
+	colframe=black!80,
+	coltitle=white,
+	colbacktitle=black!80,
 }
 
 % hyperref
