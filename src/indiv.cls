@@ -184,6 +184,11 @@
 	breakbeforesymbolpre=,
 }
 
+\setmintedinline{
+	breakanywhere,
+	breakanywheresymbolpre=,
+}
+
 % tcolorbox
 \usepackage[breakable, minted, skins]{tcolorbox}
 
@@ -196,7 +201,6 @@
 	enhanced,
 	listing engine=minted,
 	minted language=LaTeX,
-%	minted style=colorful,
 	minted options = {
 		linenos, 
 		breaklines=true,
@@ -215,13 +219,12 @@
 	}  
 }
 
-\newtcblisting[auto counter, number within=chapter]{latexex}[1]{%
+\newtcblisting[auto counter, number within=chapter]{latexex}[2]{%
 %	listing side text,
 	breakable,
 	enhanced,
 	listing engine=minted,
 	minted language=LaTeX,
-%	minted style=colorful,
 	minted options={%
 		linenos, 
 		breaklines=true,
@@ -243,6 +246,7 @@
 	\draw[dashed, line width=0.3mm] (segmentation.west) -- (segmentation.east);
 	},
 	adjusted title={範例~\thetcbcounter: #1},
+	label={#2},
 	toptitle=0.75ex,
 	bottomtitle=0.5ex,
 	lefttitle=5mm,
@@ -259,13 +263,12 @@
 	colbacklower=white,
 }
 
-\newtcblisting[use counter from=latexex]{latexex2}[1]{%
+\newtcblisting[use counter from=latexex]{latexex2}[2]{%
 	listing only,
 	breakable,
 	enhanced,
 	listing engine=minted,
 	minted language=LaTeX,
-%	minted style=colorful,
 	minted options={%
 		linenos, 
 		breaklines=true,
@@ -286,6 +289,7 @@
 		\end{tcbclipinterior}
 	},
 	adjusted title={範例~\thetcbcounter: #1},
+	label={#2},
 	toptitle=0.75ex,
 	bottomtitle=0.5ex,
 	lefttitle=5mm,
